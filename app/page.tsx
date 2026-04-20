@@ -64,7 +64,6 @@ export default function MigoBeta() {
 
       if (dbError) throw new Error("No se pudo guardar el registro");
 
-      // ÉXITO
       setRegisterSuccess({ 
         dogName: dogName.trim(), 
         whatsapp: whatsapp.trim(), 
@@ -90,7 +89,6 @@ export default function MigoBeta() {
 
     setLoading(true);
 
-    // Búsqueda simulada por ahora (IA desactivada temporalmente)
     setTimeout(() => {
       setSearchResult({
         found: true,
@@ -102,63 +100,60 @@ export default function MigoBeta() {
     }, 1200);
   };
 
-  // Pantalla Registro Exitoso
+  // ====================== PANTALLAS DE ÉXITO ======================
   if (registerSuccess) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-600 to-cyan-600 flex items-center justify-center p-6">
-        <div className="bg-white text-black rounded-3xl p-10 max-w-md w-full text-center">
-          <div className="text-8xl mb-6">🎉</div>
-          <h1 className="text-4xl font-bold mb-3">¡Registro Exitoso!</h1>
-          <p className="text-emerald-600 text-xl mb-8">Tu perrito ya tiene su DNI digital</p>
+      <div style={{ minHeight: '100vh', background: 'linear-gradient(to bottom right, #10b981, #06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+        <div style={{ background: 'white', color: 'black', borderRadius: '24px', padding: '40px 24px', maxWidth: '420px', width: '100%', textAlign: 'center' }}>
+          <div style={{ fontSize: '80px', marginBottom: '24px' }}>🎉</div>
+          <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '12px' }}>¡Registro Exitoso!</h1>
+          <p style={{ color: '#10b981', fontSize: '18px', marginBottom: '32px' }}>Tu perrito ya tiene su DNI digital</p>
 
-          <div className="bg-zinc-100 rounded-2xl p-6 mb-8 text-left space-y-3">
+          <div style={{ background: '#f3f4f6', borderRadius: '16px', padding: '24px', marginBottom: '32px', textAlign: 'left' }}>
             <p><strong>Nombre:</strong> {registerSuccess.dogName}</p>
             <p><strong>WhatsApp:</strong> {registerSuccess.whatsapp}</p>
-            <p><strong>Código DNI:</strong> <span className="font-mono font-bold text-emerald-600">{registerSuccess.dniCode}</span></p>
+            <p><strong>Código DNI:</strong> <span style={{ fontFamily: 'monospace', fontWeight: 'bold', color: '#10b981' }}>{registerSuccess.dniCode}</span></p>
           </div>
 
-          <div className="space-y-4">
-            <button 
-              onClick={() => setRegisterSuccess(null)}
-              className="w-full bg-black text-white py-5 rounded-2xl font-bold text-lg"
-            >
-              Volver al Inicio
-            </button>
-            <button 
-              onClick={() => { setRegisterSuccess(null); setTab('register'); }}
-              className="w-full bg-zinc-200 py-4 rounded-2xl font-medium text-black"
-            >
-              Registrar otro perrito
-            </button>
-          </div>
+          <button 
+            onClick={() => setRegisterSuccess(null)}
+            style={{ width: '100%', background: 'black', color: 'white', padding: '20px', borderRadius: '16px', fontSize: '18px', fontWeight: 'bold', marginBottom: '12px' }}
+          >
+            Volver al Inicio
+          </button>
+          <button 
+            onClick={() => { setRegisterSuccess(null); setTab('register'); }}
+            style={{ width: '100%', background: '#e5e7eb', color: 'black', padding: '16px', borderRadius: '16px', fontSize: '16px' }}
+          >
+            Registrar otro perrito
+          </button>
         </div>
       </div>
     );
   }
 
-  // Pantalla Perro Encontrado
   if (searchResult) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-600 to-cyan-600 flex items-center justify-center p-6">
-        <div className="bg-white text-black rounded-3xl p-10 max-w-md w-full text-center">
-          <div className="text-8xl mb-6">🐾</div>
-          <h1 className="text-4xl font-bold mb-3">¡Perro Encontrado!</h1>
+      <div style={{ minHeight: '100vh', background: 'linear-gradient(to bottom right, #10b981, #06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+        <div style={{ background: 'white', color: 'black', borderRadius: '24px', padding: '40px 24px', maxWidth: '420px', width: '100%', textAlign: 'center' }}>
+          <div style={{ fontSize: '80px', marginBottom: '24px' }}>🐾</div>
+          <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '12px' }}>¡Perro Encontrado!</h1>
           
-          <div className="bg-zinc-100 rounded-2xl p-6 mb-8 text-left space-y-3">
+          <div style={{ background: '#f3f4f6', borderRadius: '16px', padding: '24px', marginBottom: '32px', textAlign: 'left' }}>
             <p><strong>Nombre:</strong> {searchResult.dogName}</p>
             <p><strong>WhatsApp del dueño:</strong> {searchResult.whatsapp}</p>
-            <p><strong>Código DNI:</strong> <span className="font-mono font-bold text-emerald-600">{searchResult.dniCode}</span></p>
+            <p><strong>Código DNI:</strong> <span style={{ fontFamily: 'monospace', fontWeight: 'bold', color: '#10b981' }}>{searchResult.dniCode}</span></p>
           </div>
 
           <a 
             href={`https://wa.me/${searchResult.whatsapp.replace(/[^0-9]/g,'')}`}
             target="_blank"
-            className="block w-full bg-emerald-600 text-white py-5 rounded-2xl font-bold text-lg mb-4"
+            style={{ display: 'block', width: '100%', background: '#10b981', color: 'white', padding: '20px', borderRadius: '16px', fontSize: '18px', fontWeight: 'bold', marginBottom: '16px', textDecoration: 'none' }}
           >
             💬 Contactar por WhatsApp
           </a>
 
-          <button onClick={() => setSearchResult(null)} className="w-full bg-black text-white py-5 rounded-2xl font-bold text-lg">
+          <button onClick={() => setSearchResult(null)} style={{ width: '100%', background: 'black', color: 'white', padding: '20px', borderRadius: '16px', fontSize: '18px', fontWeight: 'bold' }}>
             Volver al Inicio
           </button>
         </div>
@@ -166,66 +161,69 @@ export default function MigoBeta() {
     );
   }
 
+  // ====================== PANTALLA PRINCIPAL ======================
   return (
-    <div className="min-h-screen bg-zinc-950 text-white pb-12">
-      <div className="pt-12 pb-6 text-center relative">
-        <div className="mx-auto w-28 h-28 bg-gradient-to-br from-emerald-400 to-cyan-400 rounded-3xl flex items-center justify-center text-7xl shadow-2xl mb-4">
+    <div style={{ minHeight: '100vh', backgroundColor: '#18181b', color: 'white', paddingBottom: '48px' }}>
+      <div style={{ paddingTop: '48px', paddingBottom: '24px', textAlign: 'center', position: 'relative' }}>
+        <div style={{ margin: '0 auto', width: '112px', height: '112px', background: 'linear-gradient(to bottom right, #34d399, #22d3ee)', borderRadius: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '64px', boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.3)', marginBottom: '16px' }}>
           🐾
         </div>
-        <h1 className="text-6xl font-bold tracking-tighter">MIGO Beta</h1>
-        <p className="text-emerald-400 text-xl mt-1">DNI GRATIS PARA PERRITOS</p>
+        <h1 style={{ fontSize: '48px', fontWeight: 'bold', letterSpacing: '-2px' }}>MIGO Beta</h1>
+        <p style={{ color: '#34d399', fontSize: '20px', marginTop: '4px' }}>DNI GRATIS PARA PERRITOS</p>
 
         <button
           onClick={() => setShowHowToUse(true)}
-          className="absolute top-12 right-6 w-11 h-11 bg-zinc-800 rounded-full flex items-center justify-center text-2xl hover:bg-zinc-700"
+          style={{ position: 'absolute', top: '48px', right: '24px', width: '44px', height: '44px', backgroundColor: '#27272a', borderRadius: '9999px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}
         >
           ❔
         </button>
       </div>
 
-      <div className="px-6 mb-10">
-        <div className="bg-zinc-900 rounded-3xl p-1.5 flex gap-2">
+      {/* Tabs */}
+      <div style={{ padding: '0 24px', marginBottom: '40px' }}>
+        <div style={{ backgroundColor: '#27272a', borderRadius: '24px', padding: '6px', display: 'flex', gap: '8px' }}>
           <button 
             onClick={() => { setTab('register'); setImage(null); }}
-            className={`flex-1 py-4 rounded-3xl font-semibold text-lg ${tab === 'register' ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400'}`}
+            style={{ flex: 1, padding: '16px', borderRadius: '20px', fontWeight: '600', fontSize: '18px', backgroundColor: tab === 'register' ? '#10b981' : '#18181b', color: tab === 'register' ? 'white' : '#a1a1aa' }}
           >
             Registrar mi perro
           </button>
           <button 
             onClick={() => { setTab('search'); setImage(null); }}
-            className={`flex-1 py-4 rounded-3xl font-semibold text-lg ${tab === 'search' ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400'}`}
+            style={{ flex: 1, padding: '16px', borderRadius: '20px', fontWeight: '600', fontSize: '18px', backgroundColor: tab === 'search' ? '#10b981' : '#18181b', color: tab === 'search' ? 'white' : '#a1a1aa' }}
           >
             Encontré un perro
           </button>
         </div>
       </div>
 
-      <div className="px-6 max-w-md mx-auto">
-        <div className="bg-zinc-900 rounded-3xl p-6">
-          <p className="text-center text-zinc-400 mb-5 text-sm">
+      {/* Contenido principal */}
+      <div style={{ padding: '0 24px', maxWidth: '420px', margin: '0 auto' }}>
+        <div style={{ backgroundColor: '#27272a', borderRadius: '24px', padding: '24px' }}>
+          <p style={{ textAlign: 'center', color: '#a1a1aa', marginBottom: '20px', fontSize: '15px' }}>
             {tab === 'register' 
               ? "Sube una foto clara de la nariz de tu perro" 
               : "Sube una foto de la nariz del perro que encontraste"}
           </p>
 
-          <label className="block w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:brightness-110 active:scale-95 transition-all py-8 rounded-3xl text-white text-xl font-bold shadow-lg shadow-emerald-500/40 cursor-pointer text-center">
+          <label style={{ display: 'block', width: '100%', background: 'linear-gradient(to right, #10b981, #06b6d4)', padding: '32px 24px', borderRadius: '24px', color: 'white', fontSize: '20px', fontWeight: 'bold', textAlign: 'center', cursor: 'pointer', boxShadow: '0 10px 15px -3px rgb(16 185 129 / 0.4)' }}>
             📸 Subir foto de la nariz
             <input
               type="file"
               accept="image/*"
               onChange={handleFileSelect}
-              className="hidden"
+              style={{ display: 'none' }}
             />
           </label>
 
           {image && (
-            <div className="mt-6 rounded-2xl overflow-hidden border border-zinc-700">
-              <img src={image} className="w-full" alt="preview" />
+            <div style={{ marginTop: '24px', borderRadius: '16px', overflow: 'hidden', border: '1px solid #3f3f46' }}>
+              <img src={image} style={{ width: '100%' }} alt="preview" />
             </div>
           )}
 
           {image && (
-            <div className="space-y-5 mt-6">
+            <div style={{ marginTop: '24px' }}>
               {tab === 'register' && (
                 <>
                   <input 
@@ -233,14 +231,14 @@ export default function MigoBeta() {
                     placeholder="Nombre del perro" 
                     value={dogName}
                     onChange={(e) => setDogName(e.target.value)}
-                    className="w-full p-5 bg-zinc-800 rounded-2xl text-lg"
+                    style={{ width: '100%', padding: '20px', backgroundColor: '#18181b', borderRadius: '16px', fontSize: '18px', marginBottom: '12px', color: 'white' }}
                   />
                   <input 
                     type="tel" 
                     placeholder="+591 7xxx xxxx" 
                     value={whatsapp}
                     onChange={(e) => setWhatsapp(e.target.value)}
-                    className="w-full p-5 bg-zinc-800 rounded-2xl text-lg"
+                    style={{ width: '100%', padding: '20px', backgroundColor: '#18181b', borderRadius: '16px', fontSize: '18px', color: 'white' }}
                   />
                 </>
               )}
@@ -248,7 +246,7 @@ export default function MigoBeta() {
               <button 
                 onClick={tab === 'register' ? handleRegister : handleSearch}
                 disabled={loading}
-                className="w-full py-6 bg-emerald-600 rounded-3xl text-xl font-bold disabled:opacity-70"
+                style={{ width: '100%', padding: '24px', backgroundColor: '#10b981', borderRadius: '20px', fontSize: '20px', fontWeight: 'bold', marginTop: '20px', color: 'white', opacity: loading ? 0.7 : 1 }}
               >
                 {loading ? 'Procesando...' : tab === 'register' ? '✅ Registrar Perro' : '🔍 Buscar Coincidencia'}
               </button>
@@ -257,30 +255,29 @@ export default function MigoBeta() {
         </div>
       </div>
 
-      <div className="text-center py-10 text-xs text-zinc-500 flex justify-center gap-4">
-        <button onClick={() => setShowHowToUse(true)} className="hover:text-zinc-300">Cómo usar</button>
+      {/* Footer */}
+      <div style={{ textAlign: 'center', padding: '40px 0', color: '#71717a', fontSize: '13px' }}>
+        <button onClick={() => setShowHowToUse(true)} style={{ margin: '0 8px' }}>Cómo usar</button>
         <span>|</span>
-        <button onClick={() => setShowTerms(true)} className="hover:text-zinc-300">Términos</button>
+        <button onClick={() => setShowTerms(true)} style={{ margin: '0 8px' }}>Términos</button>
         <span>|</span>
-        <button onClick={() => setShowPrivacy(true)} className="hover:text-zinc-300">Privacidad</button>
+        <button onClick={() => setShowPrivacy(true)} style={{ margin: '0 8px' }}>Privacidad</button>
       </div>
 
-      {/* Modales (igual que antes) */}
+      {/* ====================== MODALES ====================== */}
+
       {showHowToUse && (
-        <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-6">
-          <div className="bg-zinc-900 rounded-3xl max-w-md w-full p-8 max-h-[90vh] overflow-y-auto">
-            <h2 className="text-3xl font-bold text-center mb-8">¿Cómo usar MIGO Beta?</h2>
-            <div className="space-y-8 text-sm leading-relaxed">
-              <div>
-                <p className="font-semibold mb-3">1. Registrar tu perro</p>
-                <p className="text-zinc-400">Sube una foto clara de la nariz, escribe su nombre y tu número de WhatsApp.</p>
-              </div>
-              <div>
-                <p className="font-semibold mb-3">2. Si encuentras un perro perdido</p>
-                <p className="text-zinc-400">Sube una foto de su nariz (la búsqueda con IA se activará pronto).</p>
-              </div>
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.95)', zIndex: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+          <div style={{ backgroundColor: '#18181b', borderRadius: '24px', maxWidth: '420px', width: '100%', padding: '32px', maxHeight: '90vh', overflowY: 'auto' }}>
+            <h2 style={{ fontSize: '28px', fontWeight: 'bold', textAlign: 'center', marginBottom: '32px' }}>¿Cómo usar MIGO Beta?</h2>
+            <div style={{ fontSize: '15px', lineHeight: '1.6' }}>
+              <p style={{ fontWeight: '600', marginBottom: '8px' }}>1. Registrar tu perro</p>
+              <p style={{ color: '#a1a1aa' }}>Sube una foto clara de la nariz, escribe su nombre y tu número de WhatsApp.</p>
+              <br />
+              <p style={{ fontWeight: '600', marginBottom: '8px' }}>2. Si encuentras un perro perdido</p>
+              <p style={{ color: '#a1a1aa' }}>Sube una foto de su nariz y la app buscará si está registrado.</p>
             </div>
-            <button onClick={() => setShowHowToUse(false)} className="w-full mt-10 py-5 bg-emerald-600 rounded-3xl font-semibold text-lg">
+            <button onClick={() => setShowHowToUse(false)} style={{ width: '100%', marginTop: '40px', padding: '20px', backgroundColor: '#10b981', borderRadius: '20px', fontSize: '18px', fontWeight: '600' }}>
               Entendido ✓
             </button>
           </div>
@@ -288,12 +285,18 @@ export default function MigoBeta() {
       )}
 
       {showTerms && (
-        <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-6">
-          <div className="bg-zinc-900 rounded-3xl max-w-md w-full p-8 max-h-[90vh] overflow-y-auto text-sm leading-relaxed">
-            <h2 className="text-2xl font-bold text-center mb-6">Términos y Condiciones</h2>
-            <p className="mb-4"><strong>Última actualización:</strong> Abril 2026</p>
-            <p>MIGO Beta es una herramienta experimental...</p>
-            <button onClick={() => setShowTerms(false)} className="w-full mt-10 py-5 bg-emerald-600 rounded-3xl font-semibold text-lg">
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.95)', zIndex: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+          <div style={{ backgroundColor: '#18181b', borderRadius: '24px', maxWidth: '420px', width: '100%', padding: '32px', maxHeight: '90vh', overflowY: 'auto' }}>
+            <h2 style={{ fontSize: '28px', fontWeight: 'bold', textAlign: 'center', marginBottom: '24px' }}>Términos y Condiciones</h2>
+            <div style={{ fontSize: '14px', lineHeight: '1.6', color: '#d1d5db' }}>
+              <p><strong>Última actualización:</strong> Abril 2026</p>
+              <p>MIGO Beta es una herramienta experimental ofrecida "tal cual". No se ofrecen garantías de funcionamiento continuo, precisión absoluta ni disponibilidad permanente.</p>
+              <p>El usuario acepta que MIGO Beta puede dejar de funcionar en cualquier momento sin previo aviso y sin derecho a reclamo.</p>
+              <p>Al registrar un perro, el usuario autoriza expresamente la publicación de su número de WhatsApp cuando alguien encuentre al perro y suba una foto de su nariz.</p>
+              <p>De acuerdo con la legislación boliviana (Ley N° 164 de Protección de Datos Personales y Código Civil), el titular de la app no se hace responsable por el uso indebido de la información por parte de terceros.</p>
+              <p>El usuario se compromete a registrar solo perros de su propiedad y a utilizar la app de buena fe.</p>
+            </div>
+            <button onClick={() => setShowTerms(false)} style={{ width: '100%', marginTop: '40px', padding: '20px', backgroundColor: '#10b981', borderRadius: '20px', fontSize: '18px', fontWeight: '600' }}>
               Cerrar
             </button>
           </div>
@@ -301,12 +304,18 @@ export default function MigoBeta() {
       )}
 
       {showPrivacy && (
-        <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-6">
-          <div className="bg-zinc-900 rounded-3xl max-w-md w-full p-8 max-h-[90vh] overflow-y-auto text-sm leading-relaxed">
-            <h2 className="text-2xl font-bold text-center mb-6">Política de Privacidad</h2>
-            <p className="mb-4"><strong>Última actualización:</strong> Abril 2026</p>
-            <p>MIGO Beta recopila nombre, WhatsApp, foto de nariz...</p>
-            <button onClick={() => setShowPrivacy(false)} className="w-full mt-10 py-5 bg-emerald-600 rounded-3xl font-semibold text-lg">
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.95)', zIndex: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+          <div style={{ backgroundColor: '#18181b', borderRadius: '24px', maxWidth: '420px', width: '100%', padding: '32px', maxHeight: '90vh', overflowY: 'auto' }}>
+            <h2 style={{ fontSize: '28px', fontWeight: 'bold', textAlign: 'center', marginBottom: '24px' }}>Política de Privacidad</h2>
+            <div style={{ fontSize: '14px', lineHeight: '1.6', color: '#d1d5db' }}>
+              <p><strong>Última actualización:</strong> Abril 2026</p>
+              <p>MIGO Beta recopila nombre del perro, número de WhatsApp, foto de la nariz y vectores generados por IA para el único fin de identificación en caso de pérdida.</p>
+              <p>De conformidad con la Ley N° 164 de Protección de Datos Personales de Bolivia, al registrar un perro usted autoriza expresamente el almacenamiento y la divulgación pública de su número de WhatsApp cuando alguien encuentre al perro.</p>
+              <p>No garantizamos confidencialidad absoluta ni nos hacemos responsables por el uso que terceros hagan de la información publicada.</p>
+              <p>Los datos podrán ser eliminados a solicitud del titular, siempre y cuando no afecte la finalidad de la herramienta.</p>
+              <p>El responsable de la app se reserva el derecho de modificar o suspender el servicio sin previo aviso.</p>
+            </div>
+            <button onClick={() => setShowPrivacy(false)} style={{ width: '100%', marginTop: '40px', padding: '20px', backgroundColor: '#10b981', borderRadius: '20px', fontSize: '18px', fontWeight: '600' }}>
               Cerrar
             </button>
           </div>
