@@ -95,15 +95,19 @@ export default function MigoBeta() {
     }, 800);
   };
 
+  // Pantalla Registro Exitoso
   if (registerSuccess) {
     return (
-      <div style={{ minHeight: '100vh', backgroundColor: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-        <div style={{ backgroundColor: 'white', padding: '40px', borderRadius: '20px', maxWidth: '400px', width: '100%', textAlign: 'center' }}>
-          <h1 style={{ fontSize: '32px', marginBottom: '20px' }}>¡Registro Exitoso!</h1>
-          <p>Nombre: {registerSuccess.dogName}</p>
-          <p>WhatsApp: {registerSuccess.whatsapp}</p>
-          <p>Código: {registerSuccess.dniCode}</p>
-          <button onClick={() => setRegisterSuccess(null)} style={{ marginTop: '30px', padding: '15px 30px', backgroundColor: '#111827', color: 'white', border: 'none', borderRadius: '10px' }}>
+      <div style={{ minHeight: '100vh', backgroundColor: '#10b981', margin: 0, padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ backgroundColor: 'white', padding: '40px 24px', borderRadius: '20px', maxWidth: '400px', width: '100%', textAlign: 'center', boxShadow: '0 10px 30px rgba(0,0,0,0.3)' }}>
+          <h1 style={{ fontSize: '32px', marginBottom: '20px', color: '#111827' }}>¡Registro Exitoso!</h1>
+          <p style={{ marginBottom: '10px' }}><strong>Nombre:</strong> {registerSuccess.dogName}</p>
+          <p style={{ marginBottom: '10px' }}><strong>WhatsApp:</strong> {registerSuccess.whatsapp}</p>
+          <p><strong>Código:</strong> {registerSuccess.dniCode}</p>
+          <button 
+            onClick={() => setRegisterSuccess(null)}
+            style={{ marginTop: '30px', padding: '15px 30px', backgroundColor: '#111827', color: 'white', border: 'none', borderRadius: '10px', fontSize: '16px' }}
+          >
             Volver al Inicio
           </button>
         </div>
@@ -111,18 +115,23 @@ export default function MigoBeta() {
     );
   }
 
+  // Pantalla Perro Encontrado
   if (searchResult) {
     return (
-      <div style={{ minHeight: '100vh', backgroundColor: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-        <div style={{ backgroundColor: 'white', padding: '40px', borderRadius: '20px', maxWidth: '400px', width: '100%', textAlign: 'center' }}>
-          <h1 style={{ fontSize: '32px', marginBottom: '20px' }}>¡Perro Encontrado!</h1>
-          <p>Nombre: {searchResult.dogName}</p>
-          <p>WhatsApp: {searchResult.whatsapp}</p>
-          <p>Código: {searchResult.dniCode}</p>
-          <a href={`https://wa.me/${searchResult.whatsapp.replace(/[^0-9]/g,'')}`} target="_blank" style={{ display: 'block', marginTop: '30px', padding: '15px 30px', backgroundColor: '#10b981', color: 'white', textDecoration: 'none', borderRadius: '10px' }}>
+      <div style={{ minHeight: '100vh', backgroundColor: '#10b981', margin: 0, padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ backgroundColor: 'white', padding: '40px 24px', borderRadius: '20px', maxWidth: '400px', width: '100%', textAlign: 'center', boxShadow: '0 10px 30px rgba(0,0,0,0.3)' }}>
+          <h1 style={{ fontSize: '32px', marginBottom: '20px', color: '#111827' }}>¡Perro Encontrado!</h1>
+          <p style={{ marginBottom: '10px' }}><strong>Nombre:</strong> {searchResult.dogName}</p>
+          <p style={{ marginBottom: '10px' }}><strong>WhatsApp:</strong> {searchResult.whatsapp}</p>
+          <p><strong>Código:</strong> {searchResult.dniCode}</p>
+          <a 
+            href={`https://wa.me/${searchResult.whatsapp.replace(/[^0-9]/g,'')}`}
+            target="_blank"
+            style={{ display: 'block', marginTop: '30px', padding: '15px 30px', backgroundColor: '#10b981', color: 'white', textDecoration: 'none', borderRadius: '10px', fontSize: '16px' }}
+          >
             Contactar por WhatsApp
           </a>
-          <button onClick={() => setSearchResult(null)} style={{ marginTop: '15px', padding: '15px 30px', backgroundColor: '#111827', color: 'white', border: 'none', borderRadius: '10px' }}>
+          <button onClick={() => setSearchResult(null)} style={{ marginTop: '15px', padding: '15px 30px', backgroundColor: '#111827', color: 'white', border: 'none', borderRadius: '10px', fontSize: '16px' }}>
             Volver al Inicio
           </button>
         </div>
@@ -130,40 +139,116 @@ export default function MigoBeta() {
     );
   }
 
+  // Pantalla Principal
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#111827', color: 'white', padding: '20px' }}>
-      <h1 style={{ textAlign: 'center', fontSize: '36px', marginBottom: '10px' }}>MIGO Beta</h1>
-      <p style={{ textAlign: 'center', color: '#34d399', marginBottom: '30px' }}>DNI GRATIS PARA PERRITOS</p>
+    <div style={{ 
+      minHeight: '100vh', 
+      backgroundColor: '#0f172a', 
+      color: 'white', 
+      padding: '20px', 
+      margin: 0,
+      fontFamily: 'system-ui, -apple-system, sans-serif'
+    }}>
+      <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+        <div style={{ fontSize: '70px', marginBottom: '10px' }}>🐾</div>
+        <h1 style={{ fontSize: '38px', margin: '0 0 8px 0', fontWeight: '700' }}>MIGO Beta</h1>
+        <p style={{ color: '#34d399', fontSize: '19px' }}>DNI GRATIS PARA PERRITOS</p>
+      </div>
 
-      <div style={{ backgroundColor: '#1f2937', padding: '20px', borderRadius: '16px', marginBottom: '20px' }}>
-        <button onClick={() => setTab('register')} style={{ width: '100%', padding: '15px', marginBottom: '10px', backgroundColor: tab === 'register' ? '#10b981' : '#374151', color: 'white', border: 'none', borderRadius: '8px' }}>
+      <div style={{ backgroundColor: '#1e2937', padding: '20px', borderRadius: '16px', marginBottom: '20px' }}>
+        <button 
+          onClick={() => setTab('register')} 
+          style={{ 
+            width: '100%', 
+            padding: '18px', 
+            marginBottom: '10px', 
+            backgroundColor: tab === 'register' ? '#10b981' : '#334155', 
+            color: 'white', 
+            border: 'none', 
+            borderRadius: '12px', 
+            fontSize: '17.5px',
+            fontWeight: '600'
+          }}
+        >
           Registrar mi perro
         </button>
-        <button onClick={() => setTab('search')} style={{ width: '100%', padding: '15px', backgroundColor: tab === 'search' ? '#10b981' : '#374151', color: 'white', border: 'none', borderRadius: '8px' }}>
+        <button 
+          onClick={() => setTab('search')} 
+          style={{ 
+            width: '100%', 
+            padding: '18px', 
+            backgroundColor: tab === 'search' ? '#10b981' : '#334155', 
+            color: 'white', 
+            border: 'none', 
+            borderRadius: '12px', 
+            fontSize: '17.5px',
+            fontWeight: '600'
+          }}
+        >
           Encontré un perro
         </button>
       </div>
 
-      <div style={{ backgroundColor: '#1f2937', padding: '20px', borderRadius: '16px' }}>
-        <p style={{ textAlign: 'center', marginBottom: '15px' }}>
+      <div style={{ backgroundColor: '#1e2937', padding: '24px', borderRadius: '16px' }}>
+        <p style={{ textAlign: 'center', marginBottom: '20px', color: '#94a3b8', fontSize: '15.5px' }}>
           {tab === 'register' ? "Sube foto de la nariz de tu perro" : "Sube foto de la nariz del perro encontrado"}
         </p>
 
-        <label style={{ display: 'block', backgroundColor: '#10b981', color: 'white', padding: '25px', textAlign: 'center', borderRadius: '12px', fontSize: '18px', marginBottom: '15px', cursor: 'pointer' }}>
+        <label style={{ 
+          display: 'block', 
+          backgroundColor: '#10b981', 
+          color: 'white', 
+          padding: '32px', 
+          textAlign: 'center', 
+          borderRadius: '14px', 
+          fontSize: '20px', 
+          marginBottom: '20px', 
+          cursor: 'pointer',
+          fontWeight: '700'
+        }}>
           📸 Subir foto de la nariz
           <input type="file" accept="image/*" onChange={handleFileSelect} style={{ display: 'none' }} />
         </label>
 
-        {image && <img src={image} style={{ width: '100%', borderRadius: '12px', marginBottom: '15px' }} alt="preview" />}
-
-        {image && tab === 'register' && (
-          <div>
-            <input type="text" placeholder="Nombre del perro" value={dogName} onChange={(e) => setDogName(e.target.value)} style={{ width: '100%', padding: '15px', marginBottom: '10px', borderRadius: '8px', border: 'none' }} />
-            <input type="tel" placeholder="+591 7xxx xxxx" value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} style={{ width: '100%', padding: '15px', marginBottom: '20px', borderRadius: '8px', border: 'none' }} />
+        {image && (
+          <div style={{ marginBottom: '20px', borderRadius: '12px', overflow: 'hidden', border: '2px solid #475569' }}>
+            <img src={image} style={{ width: '100%' }} alt="preview" />
           </div>
         )}
 
-        <button onClick={tab === 'register' ? handleRegister : handleSearch} disabled={loading} style={{ width: '100%', padding: '18px', backgroundColor: '#10b981', color: 'white', border: 'none', borderRadius: '12px', fontSize: '18px' }}>
+        {image && tab === 'register' && (
+          <div style={{ marginBottom: '20px' }}>
+            <input 
+              type="text" 
+              placeholder="Nombre del perro" 
+              value={dogName}
+              onChange={(e) => setDogName(e.target.value)}
+              style={{ width: '100%', padding: '16px', marginBottom: '12px', borderRadius: '10px', border: 'none', fontSize: '17px' }}
+            />
+            <input 
+              type="tel" 
+              placeholder="+591 7xxx xxxx" 
+              value={whatsapp}
+              onChange={(e) => setWhatsapp(e.target.value)}
+              style={{ width: '100%', padding: '16px', borderRadius: '10px', border: 'none', fontSize: '17px' }}
+            />
+          </div>
+        )}
+
+        <button 
+          onClick={tab === 'register' ? handleRegister : handleSearch}
+          disabled={loading}
+          style={{ 
+            width: '100%', 
+            padding: '20px', 
+            backgroundColor: '#10b981', 
+            color: 'white', 
+            border: 'none', 
+            borderRadius: '14px', 
+            fontSize: '19px',
+            fontWeight: '700'
+          }}
+        >
           {loading ? 'Procesando...' : tab === 'register' ? '✅ Registrar Perro' : '🔍 Buscar Coincidencia'}
         </button>
       </div>
