@@ -98,8 +98,16 @@ export default function MigoBeta() {
   // Pantalla Registro Exitoso
   if (registerSuccess) {
     return (
-      <div style={{ minHeight: '100vh', backgroundColor: '#10b981', margin: 0, padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ backgroundColor: 'white', padding: '40px 24px', borderRadius: '20px', maxWidth: '400px', width: '100%', textAlign: 'center', boxShadow: '0 10px 30px rgba(0,0,0,0.3)' }}>
+      <div style={{ 
+        minHeight: '100vh', 
+        backgroundColor: '#10b981', 
+        margin: 0, 
+        padding: 0,
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center' 
+      }}>
+        <div style={{ backgroundColor: 'white', padding: '40px 24px', borderRadius: '24px', maxWidth: '400px', width: '100%', textAlign: 'center', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}>
           <h1 style={{ fontSize: '32px', marginBottom: '20px', color: '#111827' }}>¡Registro Exitoso!</h1>
           <p style={{ marginBottom: '10px' }}><strong>Nombre:</strong> {registerSuccess.dogName}</p>
           <p style={{ marginBottom: '10px' }}><strong>WhatsApp:</strong> {registerSuccess.whatsapp}</p>
@@ -118,8 +126,16 @@ export default function MigoBeta() {
   // Pantalla Perro Encontrado
   if (searchResult) {
     return (
-      <div style={{ minHeight: '100vh', backgroundColor: '#10b981', margin: 0, padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ backgroundColor: 'white', padding: '40px 24px', borderRadius: '20px', maxWidth: '400px', width: '100%', textAlign: 'center', boxShadow: '0 10px 30px rgba(0,0,0,0.3)' }}>
+      <div style={{ 
+        minHeight: '100vh', 
+        backgroundColor: '#10b981', 
+        margin: 0, 
+        padding: 0,
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center' 
+      }}>
+        <div style={{ backgroundColor: 'white', padding: '40px 24px', borderRadius: '24px', maxWidth: '400px', width: '100%', textAlign: 'center', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}>
           <h1 style={{ fontSize: '32px', marginBottom: '20px', color: '#111827' }}>¡Perro Encontrado!</h1>
           <p style={{ marginBottom: '10px' }}><strong>Nombre:</strong> {searchResult.dogName}</p>
           <p style={{ marginBottom: '10px' }}><strong>WhatsApp:</strong> {searchResult.whatsapp}</p>
@@ -145,8 +161,8 @@ export default function MigoBeta() {
       minHeight: '100vh', 
       backgroundColor: '#0f172a', 
       color: 'white', 
-      padding: '20px', 
-      margin: 0,
+      margin: 0, 
+      padding: '20px',
       fontFamily: 'system-ui, -apple-system, sans-serif'
     }}>
       <div style={{ textAlign: 'center', marginBottom: '30px' }}>
