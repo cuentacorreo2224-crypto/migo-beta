@@ -104,12 +104,12 @@ export default function MigoBeta() {
   if (registerSuccess) {
     return (
       <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #10b981, #06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-        <div style={{ background: 'white', color: 'black', borderRadius: '24px', padding: '40px 24px', maxWidth: '420px', width: '100%', textAlign: 'center', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.4)' }}>
-          <div style={{ fontSize: '80px', marginBottom: '20px' }}>🎉</div>
-          <h1 style={{ fontSize: '32px', fontWeight: '700', marginBottom: '8px' }}>¡Registro Exitoso!</h1>
+        <div style={{ background: 'white', color: 'black', borderRadius: '28px', padding: '40px 24px', maxWidth: '420px', width: '100%', textAlign: 'center', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.4)' }}>
+          <div style={{ fontSize: '80px', marginBottom: '24px' }}>🎉</div>
+          <h1 style={{ fontSize: '32px', fontWeight: '700', marginBottom: '12px' }}>¡Registro Exitoso!</h1>
           <p style={{ color: '#10b981', fontSize: '18px', marginBottom: '32px' }}>Tu perrito ya tiene su DNI digital</p>
 
-          <div style={{ background: '#f8fafc', borderRadius: '16px', padding: '24px', marginBottom: '32px', textAlign: 'left' }}>
+          <div style={{ background: '#f8fafc', borderRadius: '20px', padding: '24px', marginBottom: '32px', textAlign: 'left' }}>
             <p><strong>Nombre:</strong> {registerSuccess.dogName}</p>
             <p><strong>WhatsApp:</strong> {registerSuccess.whatsapp}</p>
             <p><strong>Código DNI:</strong> <span style={{ fontFamily: 'monospace', fontWeight: '700', color: '#10b981' }}>{registerSuccess.dniCode}</span></p>
@@ -136,11 +136,11 @@ export default function MigoBeta() {
   if (searchResult) {
     return (
       <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #10b981, #06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-        <div style={{ background: 'white', color: 'black', borderRadius: '24px', padding: '40px 24px', maxWidth: '420px', width: '100%', textAlign: 'center', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.4)' }}>
-          <div style={{ fontSize: '80px', marginBottom: '20px' }}>🐾</div>
-          <h1 style={{ fontSize: '32px', fontWeight: '700', marginBottom: '8px' }}>¡Perro Encontrado!</h1>
+        <div style={{ background: 'white', color: 'black', borderRadius: '28px', padding: '40px 24px', maxWidth: '420px', width: '100%', textAlign: 'center', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.4)' }}>
+          <div style={{ fontSize: '80px', marginBottom: '24px' }}>🐾</div>
+          <h1 style={{ fontSize: '32px', fontWeight: '700', marginBottom: '12px' }}>¡Perro Encontrado!</h1>
           
-          <div style={{ background: '#f8fafc', borderRadius: '16px', padding: '24px', marginBottom: '32px', textAlign: 'left' }}>
+          <div style={{ background: '#f8fafc', borderRadius: '20px', padding: '24px', marginBottom: '32px', textAlign: 'left' }}>
             <p><strong>Nombre:</strong> {searchResult.dogName}</p>
             <p><strong>WhatsApp del dueño:</strong> {searchResult.whatsapp}</p>
             <p><strong>Código DNI:</strong> <span style={{ fontFamily: 'monospace', fontWeight: '700', color: '#10b981' }}>{searchResult.dniCode}</span></p>
@@ -164,12 +164,11 @@ export default function MigoBeta() {
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#0f172a', color: 'white', paddingBottom: '60px' }}>
-      {/* Header */}
       <div style={{ paddingTop: '60px', paddingBottom: '32px', textAlign: 'center', position: 'relative' }}>
-        <div style={{ margin: '0 auto 16px', width: '128px', height: '128px', background: 'linear-gradient(135deg, #34d399, #22d3ee)', borderRadius: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '76px', boxShadow: '0 25px 50px -12px rgba(16, 185, 129, 0.5)' }}>
+        <div style={{ margin: '0 auto 20px', width: '128px', height: '128px', background: 'linear-gradient(135deg, #34d399, #22d3ee)', borderRadius: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '76px', boxShadow: '0 25px 50px -12px rgba(16, 185, 129, 0.5)' }}>
           🐾
         </div>
-        <h1 style={{ fontSize: '44px', fontWeight: '700', letterSpacing: '-2px', margin: '0' }}>MIGO Beta</h1>
+        <h1 style={{ fontSize: '44px', fontWeight: '700', letterSpacing: '-2px' }}>MIGO Beta</h1>
         <p style={{ color: '#34d399', fontSize: '20px', marginTop: '4px' }}>DNI GRATIS PARA PERRITOS</p>
 
         <button
@@ -180,7 +179,6 @@ export default function MigoBeta() {
         </button>
       </div>
 
-      {/* Tabs */}
       <div style={{ padding: '0 24px', marginBottom: '40px' }}>
         <div style={{ backgroundColor: '#1e2937', borderRadius: '9999px', padding: '6px', display: 'flex' }}>
           <button 
@@ -198,7 +196,6 @@ export default function MigoBeta() {
         </div>
       </div>
 
-      {/* Contenido Principal */}
       <div style={{ padding: '0 24px', maxWidth: '440px', margin: '0 auto' }}>
         <div style={{ backgroundColor: '#1e2937', borderRadius: '28px', padding: '28px', boxShadow: '0 10px 30px rgba(0,0,0,0.3)' }}>
           <p style={{ textAlign: 'center', color: '#94a3b8', marginBottom: '28px', fontSize: '16px' }}>
@@ -273,7 +270,6 @@ export default function MigoBeta() {
         </div>
       </div>
 
-      {/* Footer */}
       <div style={{ textAlign: 'center', padding: '50px 0 40px', color: '#64748b', fontSize: '14px' }}>
         <button onClick={() => setShowHowToUse(true)} style={{ margin: '0 12px' }}>Cómo usar</button>
         <span>|</span>
@@ -282,7 +278,7 @@ export default function MigoBeta() {
         <button onClick={() => setShowPrivacy(true)} style={{ margin: '0 12px' }}>Privacidad</button>
       </div>
 
-      {/* Modales */}
+      {/* Modales simplificados */}
       {showHowToUse && (
         <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.96)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
           <div style={{ backgroundColor: '#1e2937', borderRadius: '24px', padding: '32px', maxWidth: '420px', width: '100%', maxHeight: '90vh', overflowY: 'auto' }}>
@@ -306,12 +302,10 @@ export default function MigoBeta() {
           <div style={{ backgroundColor: '#1e2937', borderRadius: '24px', padding: '32px', maxWidth: '420px', width: '100%', maxHeight: '90vh', overflowY: 'auto' }}>
             <h2 style={{ fontSize: '26px', fontWeight: 'bold', textAlign: 'center', marginBottom: '24px' }}>Términos y Condiciones</h2>
             <div style={{ fontSize: '14.5px', lineHeight: '1.7', color: '#cbd5e1' }}>
-              <p><strong>Última actualización:</strong> 20 de abril de 2026</p>
-              <p>MIGO Beta es una herramienta experimental y gratuita. Se proporciona "tal como está", sin garantías de ningún tipo, expresas o implícitas.</p>
-              <p>El titular de la aplicación no se hace responsable por cualquier daño, pérdida o inconveniente derivado del uso de la aplicación.</p>
-              <p>Al registrar un perro, usted autoriza expresamente la publicación pública de su número de WhatsApp cuando alguien encuentre al perro y suba una foto de su nariz.</p>
-              <p>De acuerdo con la Ley N° 164 de Protección de Datos Personales de Bolivia y el Código Civil Boliviano, el usuario es responsable de la veracidad de los datos proporcionados.</p>
-              <p>El servicio puede ser modificado, suspendido o eliminado en cualquier momento sin previo aviso y sin derecho a indemnización.</p>
+              <p><strong>Última actualización:</strong> Abril 2026</p>
+              <p>MIGO Beta es una herramienta experimental. Se ofrece "tal cual", sin garantías de precisión o disponibilidad continua.</p>
+              <p>El titular no se hace responsable por daños derivados del uso de la aplicación.</p>
+              <p>Al registrar un perro, usted autoriza la publicación pública de su número de WhatsApp cuando alguien encuentre al perro.</p>
             </div>
             <button onClick={() => setShowTerms(false)} style={{ width: '100%', marginTop: '40px', padding: '20px', backgroundColor: '#10b981', borderRadius: '20px', fontSize: '18px', fontWeight: '700' }}>
               Cerrar
@@ -325,12 +319,10 @@ export default function MigoBeta() {
           <div style={{ backgroundColor: '#1e2937', borderRadius: '24px', padding: '32px', maxWidth: '420px', width: '100%', maxHeight: '90vh', overflowY: 'auto' }}>
             <h2 style={{ fontSize: '26px', fontWeight: 'bold', textAlign: 'center', marginBottom: '24px' }}>Política de Privacidad</h2>
             <div style={{ fontSize: '14.5px', lineHeight: '1.7', color: '#cbd5e1' }}>
-              <p><strong>Última actualización:</strong> 20 de abril de 2026</p>
-              <p>MIGO Beta recopila nombre del perro, número de WhatsApp, foto de la nariz y datos derivados para el único propósito de identificación en caso de pérdida.</p>
-              <p>Al registrar un perro, usted autoriza expresamente el almacenamiento y la divulgación pública de su número de WhatsApp cuando una persona encuentre al perro y suba una foto de su nariz.</p>
-              <p>De conformidad con la Ley N° 164 de Protección de Datos Personales de Bolivia, los datos serán tratados con la finalidad exclusiva de la herramienta.</p>
-              <p>No garantizamos la confidencialidad absoluta ni nos hacemos responsables por el uso indebido de la información por parte de terceros.</p>
-              <p>El responsable se reserva el derecho de modificar esta política en cualquier momento.</p>
+              <p><strong>Última actualización:</strong> Abril 2026</p>
+              <p>MIGO Beta recopila nombre, WhatsApp, foto de nariz y datos de IA para ayudar en la identificación del perro.</p>
+              <p>Al registrar, usted autoriza la divulgación pública de su número de WhatsApp cuando alguien suba una foto de la nariz del perro.</p>
+              <p>No garantizamos confidencialidad absoluta ni nos hacemos responsables por el uso que terceros hagan de la información.</p>
             </div>
             <button onClick={() => setShowPrivacy(false)} style={{ width: '100%', marginTop: '40px', padding: '20px', backgroundColor: '#10b981', borderRadius: '20px', fontSize: '18px', fontWeight: '700' }}>
               Cerrar
