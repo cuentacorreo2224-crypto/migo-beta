@@ -179,6 +179,33 @@ export default function MigoBeta() {
         margin: 0,
       }}>
         <div style={{ maxWidth: '480px', margin: '0 auto', position: 'relative' }}>
+          {/* Botón de TikTok (esquina superior izquierda) */}
+          <a
+            href="https://www.tiktok.com/@migobeta"  // Cambia esta URL por la de tu perfil de TikTok
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              position: 'absolute',
+              top: '0',
+              left: '0',
+              background: colors.surface,
+              border: `1px solid ${colors.border}`,
+              borderRadius: '50%',
+              width: '40px',
+              height: '40px',
+              fontSize: '22px',
+              fontWeight: 'bold',
+              color: colors.primaryLight,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textDecoration: 'none',
+            }}
+          >
+            🎵
+          </a>
+          
           {/* Botón de interrogación arriba a la derecha */}
           <button
             onClick={() => setShowHowToUse(true)}
@@ -204,7 +231,7 @@ export default function MigoBeta() {
           </button>
 
           {/* Header minimalista */}
-          <div style={{ textAlign: 'center', marginBottom: '40px', marginTop: '10px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '40px', marginTop: '50px' }}>
             <div style={{ fontSize: '56px', marginBottom: '12px' }}>🐕</div>
             <h1 style={{ fontSize: '32px', fontWeight: 'bold', margin: 0 }}>MIGO Beta</h1>
             <p style={{ color: colors.primaryLight, fontSize: '14px', marginTop: '6px' }}>DNI GRATIS PARA PERRITOS</p>
