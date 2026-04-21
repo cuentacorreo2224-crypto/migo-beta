@@ -260,7 +260,7 @@ export default function MigoBeta() {
               <button onClick={() => setShowTerms(true)} style={{ background: 'none', border: 'none', color: colors.textSec, fontSize: '13px', cursor: 'pointer' }}>Términos</button>
               <button onClick={() => setShowPrivacy(true)} style={{ background: 'none', border: 'none', color: colors.textSec, fontSize: '13px', cursor: 'pointer' }}>Privacidad</button>
             </div>
-            <p>© 2026 MIGO Beta - Identificación canina</p>
+            <p>© 2026 MIGO Beta - Identificación digital canina</p>
           </div>
         </div>
 
@@ -270,9 +270,9 @@ export default function MigoBeta() {
             <div style={{ background: colors.card, borderRadius: '24px', padding: '28px', maxWidth: '380px', width: '100%', border: `1px solid ${colors.border}`, maxHeight: '85vh', overflowY: 'auto' }}>
               <h2 style={{ fontSize: '24px', fontWeight: 'bold', textAlign: 'center', marginBottom: '20px' }}>📖 Cómo usar MIGO</h2>
               <div style={{ fontSize: '14px', lineHeight: '1.6', color: colors.textSec }}>
-                <p><strong>1. Registrar a tu perro:</strong> Sube una foto clara y frontal de la nariz de tu perro. Escribe su nombre y tu número de WhatsApp (con código país, ej. +591). Recibirás un código DNI único. Este código no es oficial, solo es un identificador interno de MIGO.</p>
-                <p><strong>2. Si encuentras un perro perdido:</strong> Sube una foto de su nariz (similar al registro). El sistema buscará coincidencias. Si encuentra al dueño, verás su WhatsApp y podrás contactarlo directamente.</p>
-                <p><strong>3. Contacto seguro:</strong> Usa el botón de WhatsApp para comunicarte con el dueño. MIGO no interviene en la conversación ni almacena mensajes.</p>
+                <p><strong>1. Registrar a tu perro:</strong> Selecciona REGISTRAR, sube una foto muy clara iluminada y frontal de la nariz de tu perro. Escribe su nombre y tu número WhatsApp de contacto (con código país, ej. +591). Recibirás un código DNI único. Este código es el identificador de tu mascota que te brinda MIGO.</p>
+                <p><strong>2. Si encuentras un perro perdido:</strong> Selecciona ENCONTRÉ UNO, sube una foto de la nariz del perrito encontrado (el proceso es similar al registro). El sistema buscará coincidencias. Si el sistema encuentra al perrito asociado con esa nariz, y por ende al dueño, verás su WhatsApp y podrás contactarlo directamente.</p>
+                <p><strong>3. Contacto seguro:</strong> Usa el botón de WhatsApp para comunicarte con el dueño del perrito encontrado. MIGO no interviene en la conversación ni almacena mensajes.</p>
                 <p><strong>4. Recomendaciones:</strong> Asegúrate de que la foto de la nariz esté bien iluminada y enfocada. Para mejores resultados, evita fondos con texturas similares.</p>
               </div>
               <button onClick={() => setShowHowToUse(false)} style={{ width: '100%', marginTop: '28px', padding: '14px', background: colors.primary, borderRadius: '12px', border: 'none', color: 'white', fontWeight: 'bold' }}>Cerrar</button>
@@ -286,13 +286,12 @@ export default function MigoBeta() {
               <h2 style={{ fontSize: '24px', fontWeight: 'bold', textAlign: 'center', marginBottom: '20px' }}>Términos y Condiciones</h2>
               <div style={{ fontSize: '13px', lineHeight: '1.6', color: colors.textSec }}>
                 <p><strong>Última actualización:</strong> Abril 2026</p>
-                <p><strong>1. Aceptación:</strong> Al usar MIGO Beta, aceptas estos términos. Si no estás de acuerdo, no utilices la aplicación.</p>
-                <p><strong>2. Servicio experimental:</strong> MIGO Beta se proporciona "tal cual", sin garantías de precisión, disponibilidad o seguridad. No garantizamos que la identificación por foto de nariz sea infalible.</p>
-                <p><strong>3. Responsabilidad del usuario:</strong> Eres el único responsable de la veracidad de los datos que registras (nombre, WhatsApp, foto). Debes cumplir con la Ley N° 339 de Bolivia (Ley de Protección de Datos Personales) y no registrar información falsa o de terceros sin autorización.</p>
-                <p><strong>4. Exoneración de responsabilidad:</strong> MIGO no se hace responsable por daños directos o indirectos derivados del uso de la aplicación, incluyendo pérdida de datos, malentendidos en la identificación, o uso indebido de la información de contacto por parte de terceros.</p>
-                <p><strong>5. Modificaciones:</strong> Podemos cambiar o descontinuar el servicio en cualquier momento sin previo aviso.</p>
-                <p><strong>6. Ley aplicable:</strong> Estos términos se rigen por las leyes del Estado Plurinacional de Bolivia. Cualquier disputa será resuelta en los tribunales de La Paz, Bolivia.</p>
-                <p><strong>7. Contacto:</strong> Para consultas legales, escribe a legal@migo.com (correo ficticio).</p>
+                <p><strong>1. Aceptación:</strong> Al usar MIGO Beta, aceptas estos términos.</p>
+                <p><strong>2. Uso voluntario:</strong> Nadie te obliga a usar esta app. Si la instalas o registras un perro, lo haces por tu propia voluntad.</p>
+                <p><strong>3. Servicio experimental:</strong> MIGO Beta es una herramienta gratuita y experimental. Se ofrece "tal como esta, sin ninguna garantia de que siempre funcione o que la identificacion sea perfecta y sin fallas.</p>
+                <p><strong>4. Tu responsabilidad:</strong> Tú eres el único responsable de la información que subes (fotos, nombre y WhatsApp). Debes asegurarte de que todo sea correcto y verdadero.</p>
+                <p><strong>5. MIGO no tiene responsabilidad:</strong> MIGO no se hace responsable por ningún daño, error, pérdida de datos, malentendido o cualquier problema que surja por el uso de la app. Nadie puede demandar a MIGO por usar esta aplicación voluntariamente.</p>
+                <p><strong>6. Cambios y ley:</strong> Podemos modificar o cerrar la app en cualquier momento sin aviso previo. Cualquier problema se resolverá según las leyes de Bolivia en los tribunales de La Paz.</p>
               </div>
               <button onClick={() => setShowTerms(false)} style={{ width: '100%', marginTop: '28px', padding: '14px', background: colors.primary, borderRadius: '12px', border: 'none', color: 'white', fontWeight: 'bold' }}>Cerrar</button>
             </div>
@@ -305,14 +304,11 @@ export default function MigoBeta() {
               <h2 style={{ fontSize: '24px', fontWeight: 'bold', textAlign: 'center', marginBottom: '20px' }}>Política de Privacidad</h2>
               <div style={{ fontSize: '13px', lineHeight: '1.6', color: colors.textSec }}>
                 <p><strong>Última actualización:</strong> Abril 2026</p>
-                <p><strong>1. Datos recopilados:</strong> MIGO recoge el nombre del perro, número de WhatsApp del dueño, foto de la nariz, y un código DNI interno. No recopilamos datos de ubicación ni información personal adicional.</p>
-                <p><strong>2. Uso de los datos:</strong> La foto de la nariz se utiliza exclusivamente para crear una huella digital que permita identificar al perro en futuras búsquedas. El WhatsApp se muestra únicamente cuando alguien encuentra al perro y sube una foto coincidente.</p>
-                <p><strong>3. Divulgación de información:</strong> Al registrar a tu perro, autorizas expresamente que tu número de WhatsApp sea visible para cualquier persona que suba una foto de la nariz de tu perro y el sistema encuentre una coincidencia. No compartimos tus datos con terceros fuera de este propósito.</p>
-                <p><strong>4. Base legal:</strong> El tratamiento de tus datos se basa en tu consentimiento expreso al registrarte. De acuerdo con la Ley N° 339 de Bolivia (Protección de Datos Personales), puedes solicitar la cancelación de tus datos escribiendo a datos@migo.com (correo ficticio).</p>
-                <p><strong>5. Seguridad:</strong> Implementamos medidas básicas de seguridad, pero no podemos garantizar protección absoluta contra accesos no autorizados.</p>
-                <p><strong>6. Retención de datos:</strong> Conservamos tus datos mientras tu perro esté registrado. Puedes solicitar la baja en cualquier momento.</p>
-                <p><strong>7. Derechos del usuario:</strong> Tienes derecho a acceder, rectificar o eliminar tus datos personales. Para ejercer estos derechos, escribe a privacidad@migo.com.</p>
-                <p><strong>8. Cambios a esta política:</strong> Notificaremos cambios significativos a través de la aplicación.</p>
+                <p><strong>1. Uso voluntario:</strong> Al registrarte en MIGO Beta das tu consentimiento libre y voluntario. Nadie te obliga a usar la app.</p>
+                <p><strong>2. Qué datos usamos:</strong> Recogemos solo: nombre del perro, tu WhatsApp, foto de la nariz del perro y un código interno. No guardamos tu ubicación ni más datos personales.</p>
+                <p><strong>3. Para qué usamos los datos:</strong> La foto de la nariz del perro sirve únicamente para identificar al perro si se pierde. Tu WhatsApp solo se muestra si alguien encuentra a tu perro y la app detecta coincidencia.</p>
+                <p><strong>4. Importante:</strong> Al registrar a tu perro, aceptas que tu WhatsApp sea público para quien encuentre a tu perro. Esto es necesario para que la app funcione.</p>
+                <p><strong>5. Seguridad:</strong> Hacemos lo posible por proteger tus datos, pero no podemos garantizar seguridad absoluta.</p>
               </div>
               <button onClick={() => setShowPrivacy(false)} style={{ width: '100%', marginTop: '28px', padding: '14px', background: colors.primary, borderRadius: '12px', border: 'none', color: 'white', fontWeight: 'bold' }}>Cerrar</button>
             </div>
