@@ -8,7 +8,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
-// Estilos mínimos, sin gradientes ni sombras pesadas
+// Paleta de colores planos (sin gradientes ni sombras)
 const colors = {
   bg: '#0a0c10',
   surface: '#14181f',
@@ -129,107 +129,157 @@ export default function MigoBeta() {
     );
   }
 
-  // Pantalla principal - diseño minimalista y rápido
+  // Pantalla principal - sin marcos blancos
   return (
-    <div style={{ minHeight: '100vh', background: colors.bg, color: colors.text, margin: 0, padding: '20px', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-      <div style={{ maxWidth: '480px', margin: '0 auto' }}>
-        {/* Header minimalista */}
-        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <div style={{ fontSize: '56px', marginBottom: '12px' }}>🐕</div>
-          <h1 style={{ fontSize: '32px', fontWeight: 'bold', margin: 0 }}>MIGO Beta</h1>
-          <p style={{ color: colors.primaryLight, fontSize: '14px', marginTop: '6px' }}>DNI GRATIS PARA PERRITOS</p>
-        </div>
+    <>
+      <style jsx global>{`
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { margin: 0; padding: 0; background: ${colors.bg}; }
+      `}</style>
+      <div style={{ minHeight: '100vh', background: colors.bg, color: colors.text, padding: '20px', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+        <div style={{ maxWidth: '480px', margin: '0 auto', position: 'relative' }}>
+          {/* Botón de interrogación arriba a la derecha */}
+          <button
+            onClick={() => setShowHowToUse(true)}
+            style={{
+              position: 'absolute',
+              top: '0',
+              right: '0',
+              background: colors.surface,
+              border: `1px solid ${colors.border}`,
+              borderRadius: '50%',
+              width: '40px',
+              height: '40px',
+              fontSize: '20px',
+              fontWeight: 'bold',
+              color: colors.primaryLight,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            ?
+          </button>
 
-        {/* Tabs simples */}
-        <div style={{ background: colors.surface, borderRadius: '40px', display: 'flex', marginBottom: '28px', border: `1px solid ${colors.border}` }}>
-          <button onClick={() => { setTab('register'); setImage(null); }} style={{ flex: 1, padding: '12px', borderRadius: '40px', fontWeight: '600', background: tab === 'register' ? colors.primary : 'transparent', color: tab === 'register' ? 'white' : colors.textSec, border: 'none' }}>📝 Registrar</button>
-          <button onClick={() => { setTab('search'); setImage(null); }} style={{ flex: 1, padding: '12px', borderRadius: '40px', fontWeight: '600', background: tab === 'search' ? colors.primary : 'transparent', color: tab === 'search' ? 'white' : colors.textSec, border: 'none' }}>🔍 Encontré uno</button>
-        </div>
+          {/* Header minimalista */}
+          <div style={{ textAlign: 'center', marginBottom: '40px', marginTop: '10px' }}>
+            <div style={{ fontSize: '56px', marginBottom: '12px' }}>🐕</div>
+            <h1 style={{ fontSize: '32px', fontWeight: 'bold', margin: 0 }}>MIGO Beta</h1>
+            <p style={{ color: colors.primaryLight, fontSize: '14px', marginTop: '6px' }}>DNI GRATIS PARA PERRITOS</p>
+          </div>
 
-        {/* Tarjeta principal */}
-        <div style={{ background: colors.card, borderRadius: '24px', padding: '24px', border: `1px solid ${colors.border}` }}>
-          <p style={{ textAlign: 'center', color: colors.textSec, marginBottom: '24px', fontSize: '14px' }}>
-            {tab === 'register' ? "Sube una foto clara de la nariz de tu perro" : "Sube una foto de la nariz del perro que encontraste"}
-          </p>
+          {/* Tabs simples */}
+          <div style={{ background: colors.surface, borderRadius: '40px', display: 'flex', marginBottom: '28px', border: `1px solid ${colors.border}` }}>
+            <button onClick={() => { setTab('register'); setImage(null); }} style={{ flex: 1, padding: '12px', borderRadius: '40px', fontWeight: '600', background: tab === 'register' ? colors.primary : 'transparent', color: tab === 'register' ? 'white' : colors.textSec, border: 'none' }}>📝 Registrar</button>
+            <button onClick={() => { setTab('search'); setImage(null); }} style={{ flex: 1, padding: '12px', borderRadius: '40px', fontWeight: '600', background: tab === 'search' ? colors.primary : 'transparent', color: tab === 'search' ? 'white' : colors.textSec, border: 'none' }}>🔍 Encontré uno</button>
+          </div>
 
-          <label style={{ display: 'block', background: image ? 'transparent' : `${colors.primary}10`, border: image ? 'none' : `2px dashed ${colors.primary}40`, borderRadius: '16px', padding: image ? '0' : '40px 20px', textAlign: 'center', cursor: 'pointer' }}>
-            {!image ? (
-              <>
-                <div style={{ fontSize: '48px', marginBottom: '8px' }}>📸</div>
-                <div style={{ fontWeight: '600', color: colors.primaryLight }}>Subir foto de la nariz</div>
-                <div style={{ fontSize: '12px', color: colors.textSec }}>Toca para seleccionar</div>
-              </>
-            ) : (
-              <div style={{ position: 'relative' }}>
-                <img src={image} style={{ width: '100%', borderRadius: '16px', display: 'block' }} alt="preview" />
-                <button onClick={(e) => { e.preventDefault(); setImage(null); }} style={{ position: 'absolute', top: '8px', right: '8px', background: 'rgba(0,0,0,0.7)', border: 'none', borderRadius: '30px', width: '28px', height: '28px', fontSize: '18px', color: 'white', cursor: 'pointer' }}>✕</button>
+          {/* Tarjeta principal */}
+          <div style={{ background: colors.card, borderRadius: '24px', padding: '24px', border: `1px solid ${colors.border}` }}>
+            <p style={{ textAlign: 'center', color: colors.textSec, marginBottom: '24px', fontSize: '14px' }}>
+              {tab === 'register' ? "Sube una foto clara de la nariz de tu perro" : "Sube una foto de la nariz del perro que encontraste"}
+            </p>
+
+            <label style={{ display: 'block', background: image ? 'transparent' : `${colors.primary}10`, border: image ? 'none' : `2px dashed ${colors.primary}40`, borderRadius: '16px', padding: image ? '0' : '40px 20px', textAlign: 'center', cursor: 'pointer' }}>
+              {!image ? (
+                <>
+                  <div style={{ fontSize: '48px', marginBottom: '8px' }}>📸</div>
+                  <div style={{ fontWeight: '600', color: colors.primaryLight }}>Subir foto de la nariz</div>
+                  <div style={{ fontSize: '12px', color: colors.textSec }}>Toca para seleccionar</div>
+                </>
+              ) : (
+                <div style={{ position: 'relative' }}>
+                  <img src={image} style={{ width: '100%', borderRadius: '16px', display: 'block' }} alt="preview" />
+                  <button onClick={(e) => { e.preventDefault(); setImage(null); }} style={{ position: 'absolute', top: '8px', right: '8px', background: 'rgba(0,0,0,0.7)', border: 'none', borderRadius: '30px', width: '28px', height: '28px', fontSize: '18px', color: 'white', cursor: 'pointer' }}>✕</button>
+                </div>
+              )}
+              <input type="file" accept="image/*" onChange={handleFileSelect} style={{ display: 'none' }} />
+            </label>
+
+            {image && (
+              <div style={{ marginTop: '24px' }}>
+                {tab === 'register' && (
+                  <>
+                    <input type="text" placeholder="Nombre del perro" value={dogName} onChange={(e) => setDogName(e.target.value)} style={{ width: '100%', padding: '14px', background: colors.surface, borderRadius: '12px', fontSize: '16px', color: colors.text, border: `1px solid ${colors.border}`, marginBottom: '12px', outline: 'none' }} />
+                    <input type="tel" placeholder="+591 7xx xxxxx" value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} style={{ width: '100%', padding: '14px', background: colors.surface, borderRadius: '12px', fontSize: '16px', color: colors.text, border: `1px solid ${colors.border}`, outline: 'none' }} />
+                  </>
+                )}
+                <button onClick={tab === 'register' ? handleRegister : handleSearch} disabled={loading} style={{ width: '100%', padding: '16px', background: colors.primary, borderRadius: '12px', fontSize: '16px', fontWeight: 'bold', color: 'white', border: 'none', marginTop: '20px', opacity: loading ? 0.7 : 1 }}>
+                  {loading ? 'Procesando...' : (tab === 'register' ? '✅ Registrar Perro' : '🔍 Buscar Coincidencia')}
+                </button>
               </div>
             )}
-            <input type="file" accept="image/*" onChange={handleFileSelect} style={{ display: 'none' }} />
-          </label>
-
-          {image && (
-            <div style={{ marginTop: '24px' }}>
-              {tab === 'register' && (
-                <>
-                  <input type="text" placeholder="Nombre del perro" value={dogName} onChange={(e) => setDogName(e.target.value)} style={{ width: '100%', padding: '14px', background: colors.surface, borderRadius: '12px', fontSize: '16px', color: colors.text, border: `1px solid ${colors.border}`, marginBottom: '12px', outline: 'none' }} />
-                  <input type="tel" placeholder="+591 7xx xxxxx" value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} style={{ width: '100%', padding: '14px', background: colors.surface, borderRadius: '12px', fontSize: '16px', color: colors.text, border: `1px solid ${colors.border}`, outline: 'none' }} />
-                </>
-              )}
-              <button onClick={tab === 'register' ? handleRegister : handleSearch} disabled={loading} style={{ width: '100%', padding: '16px', background: colors.primary, borderRadius: '12px', fontSize: '16px', fontWeight: 'bold', color: 'white', border: 'none', marginTop: '20px', opacity: loading ? 0.7 : 1 }}>
-                {loading ? 'Procesando...' : (tab === 'register' ? '✅ Registrar Perro' : '🔍 Buscar Coincidencia')}
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* Footer */}
-        <div style={{ textAlign: 'center', padding: '40px 0 20px', color: colors.textSec, fontSize: '13px', borderTop: `1px solid ${colors.border}`, marginTop: '28px' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '12px' }}>
-            <button onClick={() => setShowHowToUse(true)} style={{ background: 'none', border: 'none', color: colors.textSec, fontSize: '13px', cursor: 'pointer' }}>Cómo usar</button>
-            <button onClick={() => setShowTerms(true)} style={{ background: 'none', border: 'none', color: colors.textSec, fontSize: '13px', cursor: 'pointer' }}>Términos</button>
-            <button onClick={() => setShowPrivacy(true)} style={{ background: 'none', border: 'none', color: colors.textSec, fontSize: '13px', cursor: 'pointer' }}>Privacidad</button>
           </div>
-          <p>© 2026 MIGO Beta</p>
+
+          {/* Footer */}
+          <div style={{ textAlign: 'center', padding: '40px 0 20px', color: colors.textSec, fontSize: '13px', borderTop: `1px solid ${colors.border}`, marginTop: '28px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '12px' }}>
+              <button onClick={() => setShowHowToUse(true)} style={{ background: 'none', border: 'none', color: colors.textSec, fontSize: '13px', cursor: 'pointer' }}>Cómo usar</button>
+              <button onClick={() => setShowTerms(true)} style={{ background: 'none', border: 'none', color: colors.textSec, fontSize: '13px', cursor: 'pointer' }}>Términos</button>
+              <button onClick={() => setShowPrivacy(true)} style={{ background: 'none', border: 'none', color: colors.textSec, fontSize: '13px', cursor: 'pointer' }}>Privacidad</button>
+            </div>
+            <p>© 2026 MIGO Beta - Identificación canina</p>
+          </div>
         </div>
+
+        {/* Modal "Cómo usar" más detallado */}
+        {showHowToUse && (
+          <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', zIndex: 1000 }}>
+            <div style={{ background: colors.card, borderRadius: '24px', padding: '28px', maxWidth: '380px', width: '100%', border: `1px solid ${colors.border}`, maxHeight: '85vh', overflowY: 'auto' }}>
+              <h2 style={{ fontSize: '24px', fontWeight: 'bold', textAlign: 'center', marginBottom: '20px' }}>📖 Cómo usar MIGO</h2>
+              <div style={{ fontSize: '14px', lineHeight: '1.6', color: colors.textSec }}>
+                <p><strong>1. Registrar a tu perro:</strong> Sube una foto clara y frontal de la nariz de tu perro. Escribe su nombre y tu número de WhatsApp (con código país, ej. +591). Recibirás un código DNI único. Este código no es oficial, solo es un identificador interno de MIGO.</p>
+                <p><strong>2. Si encuentras un perro perdido:</strong> Sube una foto de su nariz (similar al registro). El sistema buscará coincidencias. Si encuentra al dueño, verás su WhatsApp y podrás contactarlo directamente.</p>
+                <p><strong>3. Contacto seguro:</strong> Usa el botón de WhatsApp para comunicarte con el dueño. MIGO no interviene en la conversación ni almacena mensajes.</p>
+                <p><strong>4. Recomendaciones:</strong> Asegúrate de que la foto de la nariz esté bien iluminada y enfocada. Para mejores resultados, evita fondos con texturas similares.</p>
+              </div>
+              <button onClick={() => setShowHowToUse(false)} style={{ width: '100%', marginTop: '28px', padding: '14px', background: colors.primary, borderRadius: '12px', border: 'none', color: 'white', fontWeight: 'bold' }}>Cerrar</button>
+            </div>
+          </div>
+        )}
+
+        {/* Modal Términos y Condiciones - adaptado a ley boliviana */}
+        {showTerms && (
+          <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', zIndex: 1000 }}>
+            <div style={{ background: colors.card, borderRadius: '24px', padding: '28px', maxWidth: '380px', width: '100%', border: `1px solid ${colors.border}`, maxHeight: '85vh', overflowY: 'auto' }}>
+              <h2 style={{ fontSize: '24px', fontWeight: 'bold', textAlign: 'center', marginBottom: '20px' }}>Términos y Condiciones</h2>
+              <div style={{ fontSize: '13px', lineHeight: '1.6', color: colors.textSec }}>
+                <p><strong>Última actualización:</strong> Abril 2026</p>
+                <p><strong>1. Aceptación:</strong> Al usar MIGO Beta, aceptas estos términos. Si no estás de acuerdo, no utilices la aplicación.</p>
+                <p><strong>2. Servicio experimental:</strong> MIGO Beta se proporciona "tal cual", sin garantías de precisión, disponibilidad o seguridad. No garantizamos que la identificación por foto de nariz sea infalible.</p>
+                <p><strong>3. Responsabilidad del usuario:</strong> Eres el único responsable de la veracidad de los datos que registras (nombre, WhatsApp, foto). Debes cumplir con la Ley N° 339 de Bolivia (Ley de Protección de Datos Personales) y no registrar información falsa o de terceros sin autorización.</p>
+                <p><strong>4. Exoneración de responsabilidad:</strong> MIGO no se hace responsable por daños directos o indirectos derivados del uso de la aplicación, incluyendo pérdida de datos, malentendidos en la identificación, o uso indebido de la información de contacto por parte de terceros.</p>
+                <p><strong>5. Modificaciones:</strong> Podemos cambiar o descontinuar el servicio en cualquier momento sin previo aviso.</p>
+                <p><strong>6. Ley aplicable:</strong> Estos términos se rigen por las leyes del Estado Plurinacional de Bolivia. Cualquier disputa será resuelta en los tribunales de La Paz, Bolivia.</p>
+                <p><strong>7. Contacto:</strong> Para consultas legales, escribe a legal@migo.com (correo ficticio).</p>
+              </div>
+              <button onClick={() => setShowTerms(false)} style={{ width: '100%', marginTop: '28px', padding: '14px', background: colors.primary, borderRadius: '12px', border: 'none', color: 'white', fontWeight: 'bold' }}>Cerrar</button>
+            </div>
+          </div>
+        )}
+
+        {/* Modal Política de Privacidad - adaptada a ley boliviana */}
+        {showPrivacy && (
+          <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', zIndex: 1000 }}>
+            <div style={{ background: colors.card, borderRadius: '24px', padding: '28px', maxWidth: '380px', width: '100%', border: `1px solid ${colors.border}`, maxHeight: '85vh', overflowY: 'auto' }}>
+              <h2 style={{ fontSize: '24px', fontWeight: 'bold', textAlign: 'center', marginBottom: '20px' }}>Política de Privacidad</h2>
+              <div style={{ fontSize: '13px', lineHeight: '1.6', color: colors.textSec }}>
+                <p><strong>Última actualización:</strong> Abril 2026</p>
+                <p><strong>1. Datos recopilados:</strong> MIGO recoge el nombre del perro, número de WhatsApp del dueño, foto de la nariz, y un código DNI interno. No recopilamos datos de ubicación ni información personal adicional.</p>
+                <p><strong>2. Uso de los datos:</strong> La foto de la nariz se utiliza exclusivamente para crear una huella digital que permita identificar al perro en futuras búsquedas. El WhatsApp se muestra únicamente cuando alguien encuentra al perro y sube una foto coincidente.</p>
+                <p><strong>3. Divulgación de información:</strong> Al registrar a tu perro, autorizas expresamente que tu número de WhatsApp sea visible para cualquier persona que suba una foto de la nariz de tu perro y el sistema encuentre una coincidencia. No compartimos tus datos con terceros fuera de este propósito.</p>
+                <p><strong>4. Base legal:</strong> El tratamiento de tus datos se basa en tu consentimiento expreso al registrarte. De acuerdo con la Ley N° 339 de Bolivia (Protección de Datos Personales), puedes solicitar la cancelación de tus datos escribiendo a datos@migo.com (correo ficticio).</p>
+                <p><strong>5. Seguridad:</strong> Implementamos medidas básicas de seguridad, pero no podemos garantizar protección absoluta contra accesos no autorizados.</p>
+                <p><strong>6. Retención de datos:</strong> Conservamos tus datos mientras tu perro esté registrado. Puedes solicitar la baja en cualquier momento.</p>
+                <p><strong>7. Derechos del usuario:</strong> Tienes derecho a acceder, rectificar o eliminar tus datos personales. Para ejercer estos derechos, escribe a privacidad@migo.com.</p>
+                <p><strong>8. Cambios a esta política:</strong> Notificaremos cambios significativos a través de la aplicación.</p>
+              </div>
+              <button onClick={() => setShowPrivacy(false)} style={{ width: '100%', marginTop: '28px', padding: '14px', background: colors.primary, borderRadius: '12px', border: 'none', color: 'white', fontWeight: 'bold' }}>Cerrar</button>
+            </div>
+          </div>
+        )}
       </div>
-
-      {/* Modales simplificados */}
-      {showHowToUse && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', zIndex: 1000 }}>
-          <div style={{ background: colors.card, borderRadius: '24px', padding: '28px', maxWidth: '380px', width: '100%', border: `1px solid ${colors.border}` }}>
-            <h2 style={{ fontSize: '24px', fontWeight: 'bold', textAlign: 'center', marginBottom: '20px' }}>¿Cómo usar MIGO?</h2>
-            <div style={{ fontSize: '14px', lineHeight: '1.6', color: colors.textSec }}>
-              <p><strong>1. Registrar tu perro:</strong> Sube una foto clara de su nariz, nombre y WhatsApp.</p>
-              <p><strong>2. Encontraste un perro:</strong> Sube foto de su nariz y busca coincidencia.</p>
-              <p><strong>3. Contacta al dueño</strong> vía WhatsApp.</p>
-            </div>
-            <button onClick={() => setShowHowToUse(false)} style={{ width: '100%', marginTop: '28px', padding: '14px', background: colors.primary, borderRadius: '12px', border: 'none', color: 'white', fontWeight: 'bold' }}>Cerrar</button>
-          </div>
-        </div>
-      )}
-      {showTerms && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', zIndex: 1000 }}>
-          <div style={{ background: colors.card, borderRadius: '24px', padding: '28px', maxWidth: '380px', width: '100%', border: `1px solid ${colors.border}` }}>
-            <h2 style={{ fontSize: '24px', fontWeight: 'bold', textAlign: 'center', marginBottom: '20px' }}>Términos</h2>
-            <div style={{ fontSize: '13px', lineHeight: '1.6', color: colors.textSec }}>
-              <p>MIGO Beta es una herramienta experimental. Al registrar, autorizas la publicación de tu WhatsApp cuando alguien encuentre a tu perro. No nos hacemos responsables por mal uso.</p>
-            </div>
-            <button onClick={() => setShowTerms(false)} style={{ width: '100%', marginTop: '28px', padding: '14px', background: colors.primary, borderRadius: '12px', border: 'none', color: 'white', fontWeight: 'bold' }}>Cerrar</button>
-          </div>
-        </div>
-      )}
-      {showPrivacy && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', zIndex: 1000 }}>
-          <div style={{ background: colors.card, borderRadius: '24px', padding: '28px', maxWidth: '380px', width: '100%', border: `1px solid ${colors.border}` }}>
-            <h2 style={{ fontSize: '24px', fontWeight: 'bold', textAlign: 'center', marginBottom: '20px' }}>Privacidad</h2>
-            <div style={{ fontSize: '13px', lineHeight: '1.6', color: colors.textSec }}>
-              <p>Recopilamos nombre, WhatsApp y foto de nariz para identificación. Tu WhatsApp se mostrará si alguien encuentra a tu perro.</p>
-            </div>
-            <button onClick={() => setShowPrivacy(false)} style={{ width: '100%', marginTop: '28px', padding: '14px', background: colors.primary, borderRadius: '12px', border: 'none', color: 'white', fontWeight: 'bold' }}>Cerrar</button>
-          </div>
-        </div>
-      )}
-    </div>
+    </>
   );
 }
