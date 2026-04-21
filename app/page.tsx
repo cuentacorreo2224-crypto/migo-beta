@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
@@ -31,6 +31,26 @@ export default function MigoBeta() {
   const [showHowToUse, setShowHowToUse] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
+
+  // Forzar estilos en body y html inmediatamente al montar
+  useEffect(() => {
+    // Aplicar estilos directamente al DOM para eliminar cualquier margen/padding blanco
+    document.documentElement.style.margin = '0';
+    document.documentElement.style.padding = '0';
+    document.documentElement.style.backgroundColor = colors.bg;
+    document.body.style.margin = '0';
+    document.body.style.padding = '0';
+    document.body.style.backgroundColor = colors.bg;
+    document.body.style.minHeight = '100vh';
+    
+    return () => {
+      // Limpiar (opcional, pero no necesario)
+      document.documentElement.style.margin = '';
+      document.documentElement.style.padding = '';
+      document.body.style.margin = '';
+      document.body.style.padding = '';
+    };
+  }, []);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -129,14 +149,35 @@ export default function MigoBeta() {
     );
   }
 
-  // Pantalla principal - sin marcos blancos
+  // Pantalla principal - sin marcos blancos, con estilos forzados
   return (
     <>
-      <style jsx global>{`
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { margin: 0; padding: 0; background: ${colors.bg}; }
-      `}</style>
-      <div style={{ minHeight: '100vh', background: colors.bg, color: colors.text, padding: '20px', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+      {/* Estilo crítico inyectado directamente para evitar flash de fondo blanco */}
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: ${colors.bg} !important;
+            min-height: 100vh;
+          }
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+        `
+      }} />
+      <div style={{ 
+        minHeight: '100vh', 
+        background: colors.bg, 
+        color: colors.text, 
+        padding: '20px', 
+        fontFamily: 'system-ui, -apple-system, sans-serif',
+        // Aseguramos que ocupe todo el ancho sin espacios
+        width: '100%',
+        margin: 0,
+      }}>
         <div style={{ maxWidth: '480px', margin: '0 auto', position: 'relative' }}>
           {/* Botón de interrogación arriba a la derecha */}
           <button
@@ -223,7 +264,7 @@ export default function MigoBeta() {
           </div>
         </div>
 
-        {/* Modal "Cómo usar" más detallado */}
+        {/* Modales (igual que antes pero más detallados) */}
         {showHowToUse && (
           <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', zIndex: 1000 }}>
             <div style={{ background: colors.card, borderRadius: '24px', padding: '28px', maxWidth: '380px', width: '100%', border: `1px solid ${colors.border}`, maxHeight: '85vh', overflowY: 'auto' }}>
@@ -239,7 +280,6 @@ export default function MigoBeta() {
           </div>
         )}
 
-        {/* Modal Términos y Condiciones - adaptado a ley boliviana */}
         {showTerms && (
           <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', zIndex: 1000 }}>
             <div style={{ background: colors.card, borderRadius: '24px', padding: '28px', maxWidth: '380px', width: '100%', border: `1px solid ${colors.border}`, maxHeight: '85vh', overflowY: 'auto' }}>
@@ -259,7 +299,6 @@ export default function MigoBeta() {
           </div>
         )}
 
-        {/* Modal Política de Privacidad - adaptada a ley boliviana */}
         {showPrivacy && (
           <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', zIndex: 1000 }}>
             <div style={{ background: colors.card, borderRadius: '24px', padding: '28px', maxWidth: '380px', width: '100%', border: `1px solid ${colors.border}`, maxHeight: '85vh', overflowY: 'auto' }}>
