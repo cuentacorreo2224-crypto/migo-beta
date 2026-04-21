@@ -104,7 +104,7 @@ export default function MigoBeta() {
   if (registerSuccess) {
     return (
       <div style={{ position: 'fixed', inset: 0, background: 'linear-gradient(135deg, #10b981, #06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-        <div style={{ backgroundColor: 'white', padding: '40px 24px', borderRadius: '28px', maxWidth: '420px', width: '100%', textAlign: 'center', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.4)' }}>
+        <div style={{ backgroundColor: 'white', padding: '40px 24px', borderRadius: '28px', maxWidth: '420px', width: '100%', textAlign: 'center' }}>
           <div style={{ fontSize: '80px', marginBottom: '24px' }}>🎉</div>
           <h1 style={{ fontSize: '32px', fontWeight: '700', marginBottom: '12px' }}>¡Registro Exitoso!</h1>
           <p style={{ color: '#10b981', fontSize: '18px', marginBottom: '32px' }}>Tu perrito ya tiene su DNI digital</p>
@@ -136,7 +136,7 @@ export default function MigoBeta() {
   if (searchResult) {
     return (
       <div style={{ position: 'fixed', inset: 0, background: 'linear-gradient(135deg, #10b981, #06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-        <div style={{ backgroundColor: 'white', padding: '40px 24px', borderRadius: '28px', maxWidth: '420px', width: '100%', textAlign: 'center', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.4)' }}>
+        <div style={{ backgroundColor: 'white', padding: '40px 24px', borderRadius: '28px', maxWidth: '420px', width: '100%', textAlign: 'center' }}>
           <div style={{ fontSize: '80px', marginBottom: '24px' }}>🐾</div>
           <h1 style={{ fontSize: '32px', fontWeight: '700', marginBottom: '12px' }}>¡Perro Encontrado!</h1>
           
@@ -162,7 +162,7 @@ export default function MigoBeta() {
     );
   }
 
-  // ====================== PANTALLA PRINCIPAL ======================
+  // ====================== PANTALLA PRINCIPAL - DISEÑO MINIMALISTA HERMOSO ======================
   return (
     <div style={{ 
       position: 'fixed', 
@@ -172,30 +172,49 @@ export default function MigoBeta() {
       padding: '20px',
       fontFamily: 'system-ui, -apple-system, sans-serif'
     }}>
-      <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-        <div style={{ margin: '0 auto 16px', width: '128px', height: '128px', background: 'linear-gradient(135deg, #34d399, #22d3ee)', borderRadius: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '76px', boxShadow: '0 25px 50px -12px rgba(16, 185, 129, 0.5)' }}>
+      {/* Header Minimalista */}
+      <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+        <div style={{ margin: '0 auto 16px', width: '110px', height: '110px', background: 'linear-gradient(135deg, #34d399, #22d3ee)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '68px' }}>
           🐾
         </div>
-        <h1 style={{ fontSize: '42px', fontWeight: '700', letterSpacing: '-1.5px' }}>MIGO Beta</h1>
-        <p style={{ color: '#34d399', fontSize: '20px' }}>DNI GRATIS PARA PERRITOS</p>
+        <h1 style={{ fontSize: '42px', fontWeight: '700', letterSpacing: '-1.5px', margin: 0 }}>MIGO Beta</h1>
+        <p style={{ color: '#34d399', fontSize: '19px', marginTop: '6px' }}>DNI GRATIS PARA PERRITOS</p>
       </div>
 
+      {/* Tabs Elegantes */}
       <div style={{ backgroundColor: '#1e2937', padding: '6px', borderRadius: '9999px', display: 'flex', marginBottom: '40px' }}>
         <button 
           onClick={() => { setTab('register'); setImage(null); }}
-          style={{ flex: 1, padding: '16px', borderRadius: '9999px', fontWeight: '600', fontSize: '17.5px', backgroundColor: tab === 'register' ? '#10b981' : 'transparent', color: tab === 'register' ? 'white' : '#94a3b8' }}
+          style={{ 
+            flex: 1, 
+            padding: '16px', 
+            borderRadius: '9999px', 
+            fontWeight: '600', 
+            fontSize: '17.5px', 
+            backgroundColor: tab === 'register' ? '#10b981' : 'transparent', 
+            color: tab === 'register' ? 'white' : '#94a3b8' 
+          }}
         >
           Registrar mi perro
         </button>
         <button 
           onClick={() => { setTab('search'); setImage(null); }}
-          style={{ flex: 1, padding: '16px', borderRadius: '9999px', fontWeight: '600', fontSize: '17.5px', backgroundColor: tab === 'search' ? '#10b981' : 'transparent', color: tab === 'search' ? 'white' : '#94a3b8' }}
+          style={{ 
+            flex: 1, 
+            padding: '16px', 
+            borderRadius: '9999px', 
+            fontWeight: '600', 
+            fontSize: '17.5px', 
+            backgroundColor: tab === 'search' ? '#10b981' : 'transparent', 
+            color: tab === 'search' ? 'white' : '#94a3b8' 
+          }}
         >
           Encontré un perro
         </button>
       </div>
 
-      <div style={{ backgroundColor: '#1e2937', padding: '28px', borderRadius: '24px' }}>
+      {/* Contenido Principal */}
+      <div style={{ backgroundColor: '#1e2937', padding: '28px', borderRadius: '28px' }}>
         <p style={{ textAlign: 'center', color: '#94a3b8', marginBottom: '28px', fontSize: '16px' }}>
           {tab === 'register' 
             ? "Sube una foto clara de la nariz de tu perro" 
@@ -206,13 +225,12 @@ export default function MigoBeta() {
           display: 'block', 
           background: 'linear-gradient(to right, #10b981, #22d3ee)', 
           padding: '36px 20px', 
-          borderRadius: '20px', 
+          borderRadius: '24px', 
           color: 'white', 
           fontSize: '21px', 
           fontWeight: '700', 
           textAlign: 'center', 
-          cursor: 'pointer',
-          boxShadow: '0 15px 25px rgba(16, 185, 129, 0.4)'
+          cursor: 'pointer'
         }}>
           📸 Subir foto de la nariz
           <input type="file" accept="image/*" onChange={handleFileSelect} style={{ display: 'none' }} />
@@ -266,6 +284,7 @@ export default function MigoBeta() {
         )}
       </div>
 
+      {/* Footer Minimalista */}
       <div style={{ textAlign: 'center', padding: '50px 0 40px', color: '#64748b', fontSize: '14px' }}>
         <button onClick={() => setShowHowToUse(true)} style={{ margin: '0 12px' }}>Cómo usar</button>
         <span>|</span>
