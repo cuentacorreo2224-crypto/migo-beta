@@ -8,36 +8,37 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
-// Estilos centralizados para mantener consistencia
+// Paleta de colores optimizada para branding de mascotas
+// Verde esmeralda (confianza, salud) + Ámbar (calidez, energía)
 const styles = {
-  // Colores principales
   colors: {
-    bg: '#0A0C10',
-    surface: '#13161C',
-    surfaceElevated: '#1C2028',
-    primary: '#10B981',
-    primaryLight: '#34D399',
-    primaryDark: '#059669',
+    bg: '#0A0C10',           // Fondo principal profundo
+    surface: '#14181F',      // Superficie sutil
+    surfaceElevated: '#1C212A', // Elementos elevados
+    primary: '#10B981',      // Verde esmeralda (acción principal)
+    primaryLight: '#34D399',  // Verde claro (hover, acentos)
+    primaryDark: '#059669',   // Verde oscuro (botones)
+    secondary: '#F59E0B',     // Ámbar (detalles, alertas)
+    secondaryLight: '#FBBF24',
     text: '#FFFFFF',
     textSecondary: '#9CA3AF',
     textMuted: '#6B7280',
-    border: '#1F2937',
+    border: '#2D3748',        // Bordes oscuros, no blancos
+    success: '#10B981',
+    warning: '#F59E0B',
     error: '#EF4444',
   },
-  // Sombras
   shadows: {
-    sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-    md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-    lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-    xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-    glow: '0 0 0 2px rgba(16, 185, 129, 0.2)',
+    sm: '0 1px 2px 0 rgba(0, 0, 0, 0.3)',
+    md: '0 4px 6px -1px rgba(0, 0, 0, 0.4)',
+    lg: '0 10px 15px -3px rgba(0, 0, 0, 0.4)',
+    xl: '0 20px 25px -5px rgba(0, 0, 0, 0.4)',
+    glow: '0 0 0 2px rgba(16, 185, 129, 0.3)',
   },
-  // Transiciones
   transitions: {
     default: 'all 0.2s ease',
     smooth: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   },
-  // Bordes
   radius: {
     sm: '8px',
     md: '12px',
@@ -145,7 +146,7 @@ export default function MigoBeta() {
       <div style={{
         position: 'fixed',
         inset: 0,
-        background: `linear-gradient(135deg, ${styles.colors.bg}, ${styles.colors.surface})`,
+        background: styles.colors.bg,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -207,8 +208,8 @@ export default function MigoBeta() {
               <span style={{
                 fontFamily: 'monospace',
                 fontWeight: '700',
-                color: styles.colors.primary,
-                background: `${styles.colors.primary}10`,
+                color: styles.colors.secondary,
+                background: `${styles.colors.secondary}10`,
                 padding: '4px 8px',
                 borderRadius: styles.radius.sm,
               }}>{registerSuccess.dniCode}</span>
@@ -265,7 +266,7 @@ export default function MigoBeta() {
       <div style={{
         position: 'fixed',
         inset: 0,
-        background: `linear-gradient(135deg, ${styles.colors.bg}, ${styles.colors.surface})`,
+        background: styles.colors.bg,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -285,7 +286,7 @@ export default function MigoBeta() {
           <div style={{
             fontSize: '72px',
             marginBottom: '20px',
-            background: `linear-gradient(135deg, ${styles.colors.primaryLight}, ${styles.colors.primary})`,
+            background: `linear-gradient(135deg, ${styles.colors.secondaryLight}, ${styles.colors.secondary})`,
             width: '96px',
             height: '96px',
             borderRadius: styles.radius.full,
@@ -312,18 +313,18 @@ export default function MigoBeta() {
             border: `1px solid ${styles.colors.border}`,
           }}>
             <p style={{ marginBottom: '12px', color: styles.colors.text }}>
-              <strong style={{ color: styles.colors.primaryLight }}>Nombre:</strong> {searchResult.dogName}
+              <strong style={{ color: styles.colors.secondaryLight }}>Nombre:</strong> {searchResult.dogName}
             </p>
             <p style={{ marginBottom: '12px', color: styles.colors.text }}>
-              <strong style={{ color: styles.colors.primaryLight }}>WhatsApp del dueño:</strong> {searchResult.whatsapp}
+              <strong style={{ color: styles.colors.secondaryLight }}>WhatsApp del dueño:</strong> {searchResult.whatsapp}
             </p>
             <p style={{ color: styles.colors.text }}>
-              <strong style={{ color: styles.colors.primaryLight }}>Código DNI:</strong>{' '}
+              <strong style={{ color: styles.colors.secondaryLight }}>Código DNI:</strong>{' '}
               <span style={{
                 fontFamily: 'monospace',
                 fontWeight: '700',
-                color: styles.colors.primary,
-                background: `${styles.colors.primary}10`,
+                color: styles.colors.secondary,
+                background: `${styles.colors.secondary}10`,
                 padding: '4px 8px',
                 borderRadius: styles.radius.sm,
               }}>{searchResult.dniCode}</span>
@@ -376,22 +377,23 @@ export default function MigoBeta() {
     );
   }
 
-  // Pantalla principal rediseñada
+  // Pantalla principal - sin marcos blancos
   return (
     <div style={{
       minHeight: '100vh',
       background: styles.colors.bg,
       color: styles.colors.text,
       fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      position: 'relative',
-      overflowX: 'hidden',
+      margin: 0,
+      padding: 0,
+      width: '100%',
     }}>
       <div style={{
         maxWidth: '500px',
         margin: '0 auto',
         padding: '24px 20px 40px',
       }}>
-        {/* Header rediseñado - más minimalista */}
+        {/* Header rediseñado */}
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
           <div style={{
             margin: '0 auto 20px',
@@ -418,7 +420,7 @@ export default function MigoBeta() {
             backgroundClip: 'text',
           }}>MIGO Beta</h1>
           <p style={{
-            color: styles.colors.primaryLight,
+            color: styles.colors.secondaryLight,
             fontSize: '15px',
             marginTop: '8px',
             fontWeight: '500',
@@ -426,7 +428,7 @@ export default function MigoBeta() {
           }}>DNI GRATIS PARA PERRITOS</p>
         </div>
 
-        {/* Tabs rediseñados */}
+        {/* Tabs */}
         <div style={{
           backgroundColor: styles.colors.surface,
           padding: '4px',
@@ -491,7 +493,7 @@ export default function MigoBeta() {
               : "Sube una foto de la nariz del perro que encontraste para identificar a su dueño"}
           </p>
 
-          {/* Área de subida de foto rediseñada */}
+          {/* Área de subida de foto */}
           <label style={{
             display: 'block',
             background: image ? 'transparent' : `linear-gradient(135deg, ${styles.colors.primary}15, ${styles.colors.primary}05)`,
@@ -546,8 +548,6 @@ export default function MigoBeta() {
                     justifyContent: 'center',
                     transition: styles.transitions.default,
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(0,0,0,0.9)'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(0,0,0,0.75)'}
                 >
                   ✕
                 </button>
@@ -618,7 +618,6 @@ export default function MigoBeta() {
                   cursor: loading ? 'not-allowed' : 'pointer',
                   opacity: loading ? 0.7 : 1,
                   transition: styles.transitions.default,
-                  position: 'relative',
                 }}
                 onMouseEnter={(e) => {
                   if (!loading) e.currentTarget.style.transform = 'translateY(-2px)';
@@ -648,7 +647,7 @@ export default function MigoBeta() {
           )}
         </div>
 
-        {/* Footer minimalista */}
+        {/* Footer sin bordes blancos */}
         <div style={{
           textAlign: 'center',
           padding: '48px 0 20px',
@@ -708,7 +707,7 @@ export default function MigoBeta() {
         </div>
       </div>
 
-      {/* Modales rediseñados */}
+      {/* Modales - sin marcos blancos */}
       {showHowToUse && (
         <div style={{
           position: 'fixed',
@@ -768,8 +767,6 @@ export default function MigoBeta() {
                 cursor: 'pointer',
                 transition: styles.transitions.default,
               }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
               Entendido
             </button>
@@ -828,8 +825,6 @@ export default function MigoBeta() {
                 cursor: 'pointer',
                 transition: styles.transitions.default,
               }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
               Cerrar
             </button>
@@ -887,8 +882,6 @@ export default function MigoBeta() {
                 cursor: 'pointer',
                 transition: styles.transitions.default,
               }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
               Cerrar
             </button>
@@ -897,6 +890,16 @@ export default function MigoBeta() {
       )}
 
       <style jsx global>{`
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        body {
+          margin: 0;
+          padding: 0;
+          background: ${styles.colors.bg};
+        }
         @keyframes spin {
           to { transform: rotate(360deg); }
         }
