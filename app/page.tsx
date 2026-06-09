@@ -62,7 +62,7 @@ export default function MigoBeta() {
       const blob = await fetch(image).then(r => r.blob());
 
       // Llamar a API de Vercel para extraer embedding
-      const response = await fetch('https://migo-beta.vercel.app/api/extract-embedding', {
+      const response = await fetch('https://migo-beta.vercel.app/api/recognize', {
         method: 'POST',
         headers: {
           'Content-Type': 'image/jpeg',
@@ -130,7 +130,7 @@ export default function MigoBeta() {
       const blob = await fetch(image).then(r => r.blob());
 
       // Llamar a API de Vercel para extraer embedding
-      const response = await fetch('https://migo-beta.vercel.app/api/extract-embedding', {
+      const response = await fetch('https://migo-beta.vercel.app/api/recognize', {
         method: 'POST',
         headers: {
           'Content-Type': 'image/jpeg',
@@ -146,7 +146,7 @@ export default function MigoBeta() {
       const { embedding } = await response.json();
 
       // Buscar usando la nueva API de Vercel
-      const searchResponse = await fetch('https://migo-beta.vercel.app/api/search-pet', {
+      const searchResponse = await fetch('https://migo-beta.vercel.app/api/recognize', {
   method: 'POST',
   headers: {
     'Content-Type': 'image/jpeg',

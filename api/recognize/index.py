@@ -1,30 +1,61 @@
 from http.server import BaseHTTPRequestHandler
 import json
-import urllib.request
+import numpy as np
+from PIL import Image
+import io
+import onnxruntime as ort
 import os
+import urllib.request
 
-# Usar la variable de entorno de Next.js que ya existe
+# Ruta al modelo
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "efficientnet-lite4.onnx")
+
+# Supabase config
 SUPABASE_URL = os.environ.get("NEXT_PUBLIC_SUPABASE_URL", "https://wcvsztmnjvcnbdylrjdb.supabase.co")
 SUPABASE_ANON_KEY = os.environ.get("NEXT_PUBLIC_SUPABASE_ANON_KEY", "")
+
+session = None
+
+def get_model():
+    global session
+    if session is None:
+        session = ort.InferenceSession(MODEL_PATH)
+    return session
 
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         try:
-            # Leer el embedding del body
+            # Leer imagen
             content_length = int(self.headers.get('Content-Length', 0))
             body = self.rfile.read(content_length)
-            data = json.loads(body.decode())
-            embedding = data.get('embedding')
             
-            if not embedding:
-                raise ValueError("No se recibió embedding")
+            # Procesar imagen
+            image = Image.open(io.BytesIO(body))
+            if image.mode != 'RGB':
+                image = image.convert('RGB')
+            image = image.resize((224, 224))
             
-            # Buscar en Supabase usando la API REST directamente
-            # Como RPC falla, usamos una consulta SQL directa
+            img_array = np.array(image, dtype=np.float32)
+            img_array = img_array / 255.0
+            mean = np.array([0.485, 0.456, 0.406], dtype=np.float32)
+            std = np.array([0.229, 0.224, 0.225], dtype=np.float32)
+            img_array = (img_array - mean) / std
+            img_array = np.transpose(img_array, (2, 0, 1))
+            img_array = np.expand_dims(img_array, axis=0)
+            
+            # Inferencia
+            sess = get_model()
+            input_name = sess.get_inputs()[0].name
+            outputs = sess.run(None, {input_name: img_array})
+            embedding = outputs[0].flatten().astype(np.float32)
+            norm = np.linalg.norm(embedding)
+            if norm > 0:
+                embedding = embedding / norm
+            
+            # Buscar en Supabase
             url = f"{SUPABASE_URL}/rest/v1/rpc/match_pets"
-            
             payload = json.dumps({
-                "query_embedding": embedding,
+                "query_embedding": embedding.tolist(),
                 "match_threshold": 0.75,
                 "match_count": 1
             }).encode()
@@ -35,21 +66,24 @@ class handler(BaseHTTPRequestHandler):
                 headers={
                     "apikey": SUPABASE_ANON_KEY,
                     "Authorization": f"Bearer {SUPABASE_ANON_KEY}",
-                    "Content-Type": "application/json",
-                    "Prefer": "return=representation"
+                    "Content-Type": "application/json"
                 },
                 method="POST"
             )
             
-            with urllib.request.urlopen(req) as response:
-                result = json.loads(response.read().decode())
+            try:
+                with urllib.request.urlopen(req) as response:
+                    result = json.loads(response.read().decode())
+            except urllib.error.HTTPError as e:
+                result = []
             
-            # Procesar resultado
-            if result and len(result) > 0 and result[0].get('similarity', 0) > 0.75:
+            # Respuesta
+            if result and len(result) > 0:
                 match = result[0]
                 response_data = {
                     "success": True,
                     "found": True,
+                    "embedding": embedding.tolist(),
                     "match": {
                         "dog_name": match.get('dog_name'),
                         "owner_whatsapp": match.get('owner_whatsapp'),
@@ -61,7 +95,7 @@ class handler(BaseHTTPRequestHandler):
                 response_data = {
                     "success": True,
                     "found": False,
-                    "match": None
+                    "embedding": embedding.tolist()
                 }
             
             self.send_response(200)
