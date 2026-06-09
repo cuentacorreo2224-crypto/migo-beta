@@ -50,7 +50,7 @@ class handler(BaseHTTPRequestHandler):
             url = f"{SUPABASE_URL}/rest/v1/rpc/match_pets"
             payload = json.dumps({
                 "query_embedding": embedding.tolist(),
-                "match_threshold": 0.75,
+                "match_threshold": 0.60,,
                 "match_count": 1
             }).encode()
             
