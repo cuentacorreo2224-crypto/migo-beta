@@ -7,10 +7,7 @@ import onnxruntime as ort
 import os
 import urllib.request
 
-# Ruta al modelo
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "efficientnet-lite4.onnx")
-
-# Supabase config
 SUPABASE_URL = os.environ.get("NEXT_PUBLIC_SUPABASE_URL", "https://wcvsztmnjvcnbdylrjdb.supabase.co")
 SUPABASE_ANON_KEY = os.environ.get("NEXT_PUBLIC_SUPABASE_ANON_KEY", "")
 
@@ -25,11 +22,9 @@ def get_model():
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         try:
-            # Leer imagen
             content_length = int(self.headers.get('Content-Length', 0))
             body = self.rfile.read(content_length)
             
-            # Procesar imagen
             image = Image.open(io.BytesIO(body))
             if image.mode != 'RGB':
                 image = image.convert('RGB')
@@ -40,10 +35,9 @@ class handler(BaseHTTPRequestHandler):
             mean = np.array([0.485, 0.456, 0.406], dtype=np.float32)
             std = np.array([0.229, 0.224, 0.225], dtype=np.float32)
             img_array = (img_array - mean) / std
-            img_array = np.transpose(img_array, (2, 0, 1))
+            # Formato [N, H, W, C] - NO transpose
             img_array = np.expand_dims(img_array, axis=0)
             
-            # Inferencia
             sess = get_model()
             input_name = sess.get_inputs()[0].name
             outputs = sess.run(None, {input_name: img_array})
@@ -74,10 +68,9 @@ class handler(BaseHTTPRequestHandler):
             try:
                 with urllib.request.urlopen(req) as response:
                     result = json.loads(response.read().decode())
-            except urllib.error.HTTPError as e:
+            except urllib.error.HTTPError:
                 result = []
             
-            # Respuesta
             if result and len(result) > 0:
                 match = result[0]
                 response_data = {
