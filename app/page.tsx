@@ -145,27 +145,33 @@ export default function MigoBeta() {
 
       const { embedding } = await response.json();
 
-      // Buscar en Supabase
-      const { data, error } = await supabase.rpc('match_pets', {
-        query_embedding: embedding,
-        match_threshold: 0.75,
-        match_count: 1
-      });
+      // Buscar usando la nueva API de Vercel
+      const searchResponse = await fetch('https://migo-beta.vercel.app/api/search-pet', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'image/jpeg',
+  },
+  body: blob,
+});
 
-      if (error) throw new Error(error.message);
+if (!searchResponse.ok) {
+  const errorData = await searchResponse.json();
+  throw new Error(errorData.error || 'Error en la búsqueda');
+}
 
-      if (data && data.length > 0 && data[0].similarity > 0.75) {
-        const match = data[0];
-        setSearchResult({
-          found: true,
-          dogName: match.dog_name,
-          whatsapp: match.owner_whatsapp,
-          dniCode: match.dni_code
-        });
-      } else {
-        alert("No se encontró coincidencia. Intenta con otra foto o busca por código DNI.");
+const searchData = await searchResponse.json();
+
+if (searchData.found && searchData.match) {
+  setSearchResult({
+    found: true,
+    dogName: searchData.match.dog_name,
+    whatsapp: searchData.match.owner_whatsapp,
+    dniCode: searchData.match.dni_code
+  });
+} else {
+  alert("No se encontró coincidencia. Intenta con otra foto o busca por código DNI.");
         setSearchResult(null);
-      }
+        }
     } catch (error: any) {
       alert("Error en la búsqueda:\n\n" + error.message);
     } finally {
